@@ -3,28 +3,45 @@ import java.util.ArrayList;
 
 
 public class Asiento extends Avion{
-    public Disponibilidad disponible;
-    public ArrayList<String> alfabeto;
+    //Variables de instancia:
+    public Disponibilidad disponible; //clase enum
+    public int columna; //Del 1 al 4
+    public String fila; // donde coloco el alfabeto
     
-    public Asiento(Disponibilidad d){
-        this.disponible = d; 
-    }
-    
-    
-    
-    
-    //Metodos de clase
-    public void generarAlfabeto(){
-        for(char c = 'a';c<'z';c++){
-            String letra = String.valueOf(c); //se vuelve string el char para poder anadirlo en alfabeto
-            alfabeto.add(letra);
-        }
-    }
-    
-    public void generarAsiento(){ 
-        generarAlfabeto();
         
-    } 
+    //Constructor:
+    public Asiento(Disponibilidad d,int columna,String fila){
+        this.disponible = d; 
+        this.columna = columna;
+        this.fila = fila;
+    }
+      
+    //metodos getters y setters:
+
+    public void setDisponible(Disponibilidad disponible) {
+        this.disponible = disponible;
+    }
+    
+    public void setFila(String f){
+        this.fila = f;
+    }
+    
+    public void setColumna(int c){
+        this.columna = c;
+    }
+    
+    public Disponibilidad getDiponibilidad(){
+        return disponible;
+    }
+    
+    public String getFila(){
+        return fila;
+    }
+    
+    public int getColumna(){
+        return columna;
+    }
+    
     
     
     
