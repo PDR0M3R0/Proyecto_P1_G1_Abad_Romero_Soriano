@@ -1,48 +1,43 @@
 package Aviones;
 import java.util.ArrayList;
+import Aviones.Disponibilidad;
 
+//La clase Asinet es una clase de composicion o asignacion 
 
-public class Asiento extends Avion{
-    //Variables de instancia:
-    public Disponibilidad disponible; //clase enum
-    public int columna; //Del 1 al 4
-    public String fila; // donde coloco el alfabeto
+public class Asiento{
+    //Variables de Instancia:------------------------- 
     
-        
-    //Constructor:
-    public Asiento(Disponibilidad d,int columna,String fila){
-        this.disponible = d; 
-        this.columna = columna;
-        this.fila = fila;
+    public Disponibilidad disponible; //clase enum
+    public int numeroAsiento;
+
+    //Constructor:------------------------------------
+    
+    public Asiento(Disponibilidad disponible,int numeroAsiento){
+        this.disponible = disponible;   
+        this.numeroAsiento = numeroAsiento;
+    }
+    
+    public Asiento(int numeroAsiento){
+        this.disponible = Disponibilidad.LIBRE;
+        this.numeroAsiento=numeroAsiento;
     }
       
-    //metodos getters y setters:
-
+    //metodos getters y setters:----------------------
+    
     public void setDisponible(Disponibilidad disponible) {
         this.disponible = disponible;
     }
     
-    public void setFila(String f){
-        this.fila = f;
+    public void setNumeroAsiento(int na){
+        this.numeroAsiento = na;
     }
     
-    public void setColumna(int c){
-        this.columna = c;
-    }
-    
-    public Disponibilidad getDiponibilidad(){
+    public Disponibilidad getDisponibilidad(){
         return disponible;
     }
     
-    public String getFila(){
-        return fila;
+    public int getNumeroAsiento(){
+        return numeroAsiento;
     }
-    
-    public int getColumna(){
-        return columna;
-    }
-    
-    
-    
-    
+  
 }
