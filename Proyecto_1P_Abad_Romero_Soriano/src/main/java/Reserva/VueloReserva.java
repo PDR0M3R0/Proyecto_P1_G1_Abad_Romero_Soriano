@@ -8,6 +8,10 @@ package Reserva;
  *
  * @author axsl3
  */
-public class VueloReserva {
+public class VueloReserva extends Vuelo {
+    
+    public int codigoVueloReserva;
+    
+    
     
 }
