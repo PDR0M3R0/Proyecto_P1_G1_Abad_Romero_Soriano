@@ -38,8 +38,8 @@ public class Avion {
         Asiento asientoAvion = new Asiento(numero);
         
         for(Asiento a: asientos){
-            if (asientoAvion.getDisponibilidad() == Disponibilidad.LIBRE){
-                asientoAvion.setDisponible(Disponibilidad.OCUPADO);
+            if (asientoAvion.getDisponibilidad() == Disponibilidad.SI){
+                asientoAvion.setDisponible(Disponibilidad.NO);
                 asientos.add(asientoAvion);
             }else{
                 System.out.println("El asiento seleccionado se encuentra ocupado, ingrese otr por favor");

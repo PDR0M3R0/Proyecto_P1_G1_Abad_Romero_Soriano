@@ -1,17 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Reserva;
 
-/**
- *
- * @author axsl3
- */
-public class VueloReserva extends Vuelo {
+public class VueloReserva {
     
-    public int codigoVueloReserva;
+    protected int codigoVueloReserva;
+    protected Vuelo vuelo;
+    protected TipoVuelo tipo;
     
     
-    
+            
+            
+            
+            
 }

@@ -6,19 +6,21 @@ import Aviones.Disponibilidad;
 
 public class Asiento{
     //Variables de Instancia:------------------------- 
-    
+    public String codigoAvion;
     public Disponibilidad disponible; //clase enum
     public int numeroAsiento;
 
     //Constructor:------------------------------------
     
-    public Asiento(Disponibilidad disponible,int numeroAsiento){
+    public Asiento(String codigoAvion,int numeroAsiento, Disponibilidad disponible){
+        this.codigoAvion = codigoAvion;
         this.disponible = disponible;   
         this.numeroAsiento = numeroAsiento;
     }
     
     public Asiento(int numeroAsiento){
-        this.disponible = Disponibilidad.LIBRE;
+        this.codigoAvion = "cualquiera";
+        this.disponible = Disponibilidad.SI;
         this.numeroAsiento=numeroAsiento;
     }
       
@@ -32,6 +34,10 @@ public class Asiento{
         this.numeroAsiento = na;
     }
     
+    public void setCodigoAvion(String ca){
+        this.codigoAvion = ca;
+    }
+    
     public Disponibilidad getDisponibilidad(){
         return disponible;
     }
@@ -40,4 +46,8 @@ public class Asiento{
         return numeroAsiento;
     }
   
+    public String getCodigoAvion(){
+        return codigoAvion;
+    }
+    
 }

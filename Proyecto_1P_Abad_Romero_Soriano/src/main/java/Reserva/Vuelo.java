@@ -1,39 +1,47 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Reserva;
-import Aviones.Avion;
 
-/**
- *
- * @author axsl3
- */
+
 public class Vuelo {
-    public String codigo;
-    public Avion avion;
-    public String fecha_salida; 
-    public String fecha_llegada;
-    public Itinerarios itinerario;
-    public double precio;
-    public int precioMillas;
+    protected String codigo;
+    protected String codigoAvion;
+    protected String fechaSalida; 
+    protected String fechaLlegada;
+    protected String codigoItinerario;
+    protected double precio;
+    protected int precioMillas;
     
     
-    public Vuelo(String codigo, Avion avion , String fecha_salida, String fecha_llegada, Itinerarios itinerario, double precio, int precioMillas){
-    this.codigo = codigo;
-    this.avion = avion;
-    this.fecha_salida = fecha_salida; 
-    this.fecha_llegada = fecha_llegada;
-    this.itinerario = itinerario;
-    this.precio = precio;
-    this.precioMillas = precioMillas;
+    public Vuelo(String codigo, String codigoAvion , String fechaSalida, String fechaLlegada, String codigoItinerario, double precio, int precioMillas){
+        this.codigo = codigo;
+        this.codigoAvion = codigoAvion;
+        this.fechaSalida = fechaSalida; 
+        this.fechaLlegada = fechaLlegada;
+        this.codigoItinerario = codigoItinerario;
+        this.precio = precio;
+        this.precioMillas = precioMillas;
 }
     
     public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
     
+    public void setCodigoAvion(String codigoAvion){
+        this.codigoAvion = codigoAvion;
+    }
     
+    public void setFechaSalida(String fechaSalida){
+        this.fechaSalida = fechaSalida;
+    }
+            
+    public void setFechaLlegada(String fechaLlegada){
+        this.fechaLlegada = fechaLlegada;
+    }  
+            
+    public void setCodigoItinerario(String codigoItinerario){
+        this.codigoItinerario=codigoItinerario;
+    }    
     
-    
+    public void setPrecio(double precio){
+        this.precio = precio;
+    }
 }
