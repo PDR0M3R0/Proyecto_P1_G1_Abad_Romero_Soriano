@@ -3,18 +3,31 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Usuario;
+import Reserva.*;
 
-/**
- *
- * @author Johan
- */
 public class Cliente extends Usuario {
     public String tarjeta;
+
+    public Cliente(String cedula, String nombres, String apellidos, String edad, String correo, String usuario, String contraseña, Perfil perfil,String tarjeta) {
+        super(cedula, nombres, apellidos, edad, correo, usuario, contraseña, perfil);
+        this.tarjeta = tarjeta;
+    }
     
-    public Pago pagarReserva(){
+    
+    public String getTarjeta() {
+        return tarjeta;
+    }
+
+    public void setTarjeta(String tarjeta) {
+        this.tarjeta = tarjeta;
+    }
+    
+    
+    
+    public void pagarReserva(){
         
     }
-    public Rerserva crearReserva(){
+    public void crearReserva(){
         
     }
     @Override
