@@ -7,7 +7,7 @@ package Usuario;
 public class VIP extends Cliente {
 
     public TipoVIP tipoVIP;
-    public int millas;
+    public int millas = 1000;
 
     public VIP(String cedula, String nombres, String apellidos, String edad, String correo, String usuario, String contraseña, Perfil perfil, String tarjeta, TipoVIP tipoVIP, int millas) {
         super(cedula, nombres, apellidos, edad, correo, usuario, contraseña, perfil, tarjeta);
