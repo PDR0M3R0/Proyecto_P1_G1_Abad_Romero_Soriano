@@ -20,7 +20,7 @@ public class Reserva {
     }
     
     
-    //Meotodos de la clase:
+    //Metodos de la clase:
     public void EleccionVuelos(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Debe mostrarse una lista de todos los  itinerarios");
@@ -30,6 +30,16 @@ public class Reserva {
         
         System.out.println("Elija su destino: ");
         String destinoCliente = sc.next();
+        
+        System.out.println("ingrese la fecha de Salida: ");
+        String fechaSalida = sc.next();
+        
+        System.out.println("Ingrese la fecha de Llegada: ");
+        String fechaLlegada = sc.next();
+        
+        //Hay que acceder por un for a la lista de cuelo para comparar y elegirlo 
+        //de lo contrario no existe y se le pide de nuevo
+        //hya que sobrecargar los constructor de itinerario, vuelo
     }
     
     public void AsignacionAsientos(){

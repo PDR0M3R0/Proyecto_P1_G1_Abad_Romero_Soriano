@@ -3,7 +3,7 @@ import Aviones.Avion;
 
 public class Vuelo {
     //Atributos:
-    protected String codigo;
+    protected String codigoVuelo;
     protected Avion avion; //de aqui se asocia el codigo del avion
     protected String fechaSalida; 
     protected String fechaLlegada;
@@ -13,7 +13,7 @@ public class Vuelo {
     
     //Constructor: 
     public Vuelo(String codigo, Avion avion , String fechaSalida, String fechaLlegada, Itinerario itinerario, double precio, int precioMillas){
-        this.codigo = codigo;
+        this.codigoVuelo = codigo;
         this.avion = avion;
         this.fechaSalida = fechaSalida; 
         this.fechaLlegada = fechaLlegada;
@@ -24,8 +24,8 @@ public class Vuelo {
     
     
     //Metodos de la clase: 
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
+    public void setCodigoVuelo(String codigo) {
+        this.codigoVuelo = codigo;
     }
     
     public void setCodigoAvion(Avion avion){
@@ -52,8 +52,8 @@ public class Vuelo {
         this.precioMillas = precioMillas;
     }
 
-    public String getCodigo() {
-        return codigo;
+    public String getCodigoVuelo() {
+        return codigoVuelo;
     }
 
     public Avion getAvion() {

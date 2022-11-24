@@ -60,9 +60,24 @@ public class SistemaCompraTicketsAereos {
     }
 
     public void menuCliente() {
+        //color do while para repetir este
         System.out.println("1. Comprar tickets aéreos");
         System.out.println("2. Consultar reservas");
         System.out.println("3. Salir");
+        
+        
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Ingrese su opcion: ");
+        
+        int x = sc.nextInt();
+        sc.close();
+        
+        if(x == 1){
+            //invocar el metodo de comrpar ticket
+        }else if(x == 2){
+            //invocar e metodo de consultar reser
+        }
+        
 
     }
 
@@ -70,5 +85,9 @@ public class SistemaCompraTicketsAereos {
         System.out.println("1. Consultar usuarios");
         System.out.println("2. Consultar reservas");
         System.out.println("3. Salir");
+        
+        
+        
+        
     }
 }
