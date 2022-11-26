@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Reserva {
     //Atributos:
     protected String codigoVueloReserva;
-    protected ArrayList<VueloReserva> productos = new ArrayList<VueloReserva>();  
+    protected ArrayList<VueloReserva> vuelosReservas = new ArrayList<>();  
     protected Cliente cliente;
     protected String fechaReserva;
     protected double valorPagar;    
@@ -62,12 +62,12 @@ public class Reserva {
         this.codigoVueloReserva = codigoVueloReserva;
     }
 
-    public ArrayList<VueloReserva> getProductos() {
-        return productos;
+    public ArrayList<VueloReserva> getVueloReservas() {
+        return vuelosReservas;
     }
 
-    public void setProductos(ArrayList<VueloReserva> productos) {
-        this.productos = productos;
+    public void setVuelosReservas(ArrayList<VueloReserva> vuelosReservas) {
+        this.vuelosReservas = vuelosReservas;
     }
 
     public Cliente getCliente() {

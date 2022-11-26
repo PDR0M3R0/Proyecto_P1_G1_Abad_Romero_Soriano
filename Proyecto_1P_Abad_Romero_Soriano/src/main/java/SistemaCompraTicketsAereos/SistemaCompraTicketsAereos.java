@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package SistemaCompraTicketsAereos;
 
 import Aviones.*;
@@ -12,7 +8,11 @@ import java.util.ArrayList;
 
 public class SistemaCompraTicketsAereos {
 
-    ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+    static ArrayList<Usuario> usuarios = new ArrayList<>();
+    static ArrayList<Reserva> reservas = new ArrayList<>();
+    static ArrayList<Vuelo> vuelos = new ArrayList<>();
+    static ArrayList<Itinerario> itinerarios = new ArrayList<>();
+    
 
     public static void main(String[] args) {
         SistemaCompraTicketsAereos sistema = new SistemaCompraTicketsAereos();
