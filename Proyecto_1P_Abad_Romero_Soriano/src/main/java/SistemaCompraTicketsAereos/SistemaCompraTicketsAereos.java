@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package SistemaCompraTicketsAereos;
 
 import Aviones.*;
@@ -12,7 +8,11 @@ import java.util.ArrayList;
 
 public class SistemaCompraTicketsAereos {
 
-    ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+    static ArrayList<Usuario> usuarios = new ArrayList<>();
+    static ArrayList<Reserva> reservas = new ArrayList<>();
+    static ArrayList<Vuelo> vuelos = new ArrayList<>();
+    static ArrayList<Itinerario> itinerarios = new ArrayList<>();
+    
 
     public static void main(String[] args) {
         SistemaCompraTicketsAereos sistema = new SistemaCompraTicketsAereos();
@@ -60,9 +60,28 @@ public class SistemaCompraTicketsAereos {
     }
 
     public void menuCliente() {
+
         System.out.println("\n1. Comprar tickets aéreos");
+
+        //color do while para repetir este
+        System.out.println("1. Comprar tickets aéreos");
+
         System.out.println("2. Consultar reservas");
         System.out.println("3. Salir");
+        
+        
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Ingrese su opcion: ");
+        
+        int x = sc.nextInt();
+        sc.close();
+        
+        if(x == 1){
+            //invocar el metodo de comrpar ticket
+        }else if(x == 2){
+            //invocar e metodo de consultar reser
+        }
+        
 
     }
 
@@ -70,5 +89,9 @@ public class SistemaCompraTicketsAereos {
         System.out.println("\n1. Consultar usuarios");
         System.out.println("2. Consultar reservas");
         System.out.println("3. Salir");
+        
+        
+        
+        
     }
 }

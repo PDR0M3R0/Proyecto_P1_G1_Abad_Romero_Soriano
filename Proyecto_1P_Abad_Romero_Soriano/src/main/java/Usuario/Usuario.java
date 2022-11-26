@@ -1,17 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Usuario;
 
 import java.util.Objects;
 
-/**
- *
- * @author Johan
- */
-public class Usuario {
 
+public class Usuario {
+    //Atributos
     protected String cedula;
     protected String nombres;
     protected String apellidos;
@@ -20,7 +13,8 @@ public class Usuario {
     protected String usuario;
     protected String contraseña;
     protected Perfil perfil;
-
+    
+    //Constructor
     public Usuario(String cedula, String nombres, String apellidos, String edad, String correo, String usuario, String contraseña, Perfil perfil) {
         this.cedula = cedula;
         this.nombres = nombres;
@@ -33,6 +27,9 @@ public class Usuario {
 
     }
 
+    
+    
+    //Metodos de la calse
     public void setCedula(String Cedula) {
         this.cedula = Cedula;
     }
@@ -97,8 +94,18 @@ public class Usuario {
         this.perfil = perfil;
     }
 
-    public void consultarReserva() {
-
+    public void comprarTicket(){
+      
+        
+        
+        
     }
+    
+    
+    public void consultarReserva() {
+        
+    }
+    
+    
 
 }

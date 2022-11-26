@@ -4,9 +4,9 @@ package Reserva;
 public class Itinerario {
     //Atributos:
   protected String codigoItinerario;
-  protected String origen;
-  protected String destino;
-  protected String horaSalida; //Planeo que sea float o double
+  protected String origen; //ciudad
+  protected String destino; //ciudad
+  protected String horaSalida; //Planeo que sea float o double wrapper??
   protected String horaLlegada;//De la misma manera double o float
   protected String duracion;//para que duracion se pueda hacer como la diferencia
     
