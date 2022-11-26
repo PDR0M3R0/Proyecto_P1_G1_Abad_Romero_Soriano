@@ -65,7 +65,6 @@ public class SistemaCompraTicketsAereos {
 
         //color do while para repetir este
         System.out.println("1. Comprar tickets aéreos");
-
         System.out.println("2. Consultar reservas");
         System.out.println("3. Salir");
         
