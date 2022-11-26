@@ -18,7 +18,7 @@ public class SistemaCompraTicketsAereos {
         SistemaCompraTicketsAereos sistema = new SistemaCompraTicketsAereos();
         System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
         System.out.println("                     BIENVENIDO AL SISTEMA");
-        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n\n");
+        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
         sistema.cargaUsuarios();
         sistema.ingreso();
     }
@@ -60,14 +60,14 @@ public class SistemaCompraTicketsAereos {
     }
 
     public void menuCliente() {
-        System.out.println("1. Comprar tickets aéreos");
+        System.out.println("\n1. Comprar tickets aéreos");
         System.out.println("2. Consultar reservas");
         System.out.println("3. Salir");
 
     }
 
     public void menuOperador() {
-        System.out.println("1. Consultar usuarios");
+        System.out.println("\n1. Consultar usuarios");
         System.out.println("2. Consultar reservas");
         System.out.println("3. Salir");
     }
