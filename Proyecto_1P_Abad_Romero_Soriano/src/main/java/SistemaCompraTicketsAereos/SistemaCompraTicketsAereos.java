@@ -1,5 +1,6 @@
 package SistemaCompraTicketsAereos;
 
+
 import Aviones.*;
 import Reserva.*;
 import Usuario.*;
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 public class SistemaCompraTicketsAereos {
 
     static ArrayList<Usuario> usuarios = new ArrayList<>();
+    static ArrayList<Cliente> clientes = new ArrayList<>();
     static ArrayList<Reserva> reservas = new ArrayList<>();
     static ArrayList<Vuelo> vuelos = new ArrayList<>();
     static ArrayList<Itinerario> itinerarios = new ArrayList<>();
@@ -20,20 +22,71 @@ public class SistemaCompraTicketsAereos {
         System.out.println("                     BIENVENIDO AL SISTEMA");
         System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
         sistema.cargaUsuarios();
+        sistema.cargarClientes();
         sistema.ingreso();
     }
 
     public void cargaUsuarios() {
-
-        usuarios.add(new Usuario("0972327367", "Carolina", "Sabando", "23", "csabando@gmail.com", "csabando", "dkioeiw2", Perfil.S));
-        usuarios.add(new Usuario("0923879161", "Armando", "Mancilla", "45", "armandoM@gmail.com", "amancilla", "qwrty", Perfil.S));
-        usuarios.add(new Usuario("0927363768", "Ana", "Rosero", "38", "arosero@gmail.com", "arose", "ihsywy", Perfil.V));
-        usuarios.add(new Usuario("1207392968", "Gerardo", "Campos", "56", "gcampos@gmail.com", "gcampos", "28374jshs", Perfil.O));
-        usuarios.add(new Usuario("0926534836", "Ramiro", "Vasquez", "30", "rvasquz@gmail.com", "rvasquez", "RV1234", Perfil.V));
-        usuarios.add(new Usuario("0932332834", "Arturo", "Valenzuela", "58", "artval@gmail.com", "artval", "uee2833", Perfil.O));
-        usuarios.add(new Usuario("1203864463", "Vanessa", "Hurtado", "36", "vanhurtado@gmail,com", "vanhurtado", "uuu363", Perfil.O));
-        usuarios.add(new Usuario("1203746855", "Luisa", "Martínez", "34", "luisamart@gmail.com", "luisamart", "lu2273ss", Perfil.O));
-
+        
+        ArrayList<String[]> parametros = ManejoArchivo.LeeFichero("usuarios.txt");
+        for(String[] s:parametros){
+            
+            String[] arregloNombre = s[1].split(" ");
+            
+            
+            if(s[6].equals("S")){
+                Perfil p = Perfil.S;
+                Usuario u = new Usuario(s[0],arregloNombre[0],arregloNombre[1],s[2],s[3],s[4],s[5],p);
+                usuarios.add(u);
+                
+            }else if(s[6].equals("V")){
+                Perfil p = Perfil.V;
+                Usuario u = new Usuario(s[0],arregloNombre[0],arregloNombre[1],s[2],s[3],s[4],s[5],p);
+                usuarios.add(u);
+                
+            }else if (s[6].equals("O")){
+                Perfil p = Perfil.O;
+                Usuario u = new Usuario(s[0],arregloNombre[0],arregloNombre[1],s[2],s[3],s[4],s[5],p);
+                usuarios.add(u);
+            }
+       
+        }    
+        
+        
+    }
+    
+    
+    public void cargarClientes(){
+        ArrayList<String[]> parametros = ManejoArchivo.LeeFichero("clientes.txt");
+        for(String[] s: parametros){
+            String cedula = s[0];
+            String tarjeta = s[1];
+            String tipoVIP = s[2];
+            String millas = s[3];
+            
+            for(Usuario u:usuarios){
+                if(s[0].equals(u.getCedula())){
+                    Cliente c  = new Cliente(u.getCedula(),u.getNombres(),u.getApellidos(),u.getEdad(),u.getCorreo(),u.getUsuario(),u.getContraseña(),u.getPerfil(),tarjeta);
+                    
+                    if(tipoVIP.equals("GOLDEN PASS")){
+                        TipoVIP tv = TipoVIP.GOLDPASS;
+                        int m = Integer.valueOf(millas);
+                        VIP vip = new VIP(c.getCedula(),c.getNombres(),c.getApellidos(),c.getEdad(),c.getCorreo(),c.getUsuario(),c.getContraseña(),c.getPerfil(),c.getTarjeta(),tv,m);
+                        Cliente cc = (Cliente)vip;
+                        clientes.add(cc);
+                    
+                    }else if(tipoVIP.equals("PLATINIUM PASS")){
+                        TipoVIP tv = TipoVIP.PLATINUMPASS;
+                        int m = Integer.valueOf(millas);
+                        VIP vip = new VIP(c.getCedula(),c.getNombres(),c.getApellidos(),c.getEdad(),c.getCorreo(),c.getUsuario(),c.getContraseña(),c.getPerfil(),c.getTarjeta(),tv,m);
+                        Cliente cc = (Cliente)vip;
+                        clientes.add(cc);  
+                    }
+                    
+                    clientes.add(c);
+                }
+            } 
+        } 
     }
 
     public void ingreso() {
