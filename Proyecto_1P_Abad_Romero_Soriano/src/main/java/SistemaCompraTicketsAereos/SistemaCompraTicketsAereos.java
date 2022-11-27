@@ -30,7 +30,7 @@ public class SistemaCompraTicketsAereos {
         sistema.cargarItinerarios();
         //sistema.cargarVuelos();
         sistema.ingreso();
-
+        sistema.Paso1();
     }
 
     public void cargaUsuarios() {
@@ -253,11 +253,24 @@ public class SistemaCompraTicketsAereos {
         //de lo contrario no existe y se le pide de nuevo
         //hya que sobrecargar los constructor de itinerario, vuelo
     }
-    public void Paso1(){
+
+    public void Paso1() {
         System.out.println("*******************Paso1*********************");
-        System.out.println("*********************************************");
-        System.out.println("--------------Vuelos disponibles-------------");
-        System.out.println("");
+        System.out.println("*********************************************\n");
+        System.out.println("----------Vuelos disponibles IDA-------------\n");
+
+        for (int i = 0; i < 3; i++) {
+            int num= i + 1;
+            System.out.println("-----------------------" + num + "-----------------------");
+            System.out.println("CODIGO: "+itinerarios.get(i).getCodigoItinerario());
+            System.out.println("HORA SALIDA: "+itinerarios.get(i).getHoraSalida());
+            System.out.println("HORA LLEGADA: "+itinerarios.get(i).getHoraLlegada());
+            System.out.println("DURACIÓN: "+itinerarios.get(i).getDuracion());
+            System.out.println("AVION: ");
+            System.out.println("PRECIO: ");
+            System.out.println("COSTO MILLAS: ");
+        }
+        
     }
 
     public void menuOperador() {
