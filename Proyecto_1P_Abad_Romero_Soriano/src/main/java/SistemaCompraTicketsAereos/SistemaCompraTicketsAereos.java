@@ -18,6 +18,7 @@ public class SistemaCompraTicketsAereos {
     static ArrayList<Itinerario> itinerarios = new ArrayList<>();
     static ArrayList<Usuario> usuarioa = new ArrayList<>();
     static ArrayList<Vuelo> vueloa = new ArrayList<>();
+    double[] valores = new double[6];
 
     public static void main(String[] args) {
         SistemaCompraTicketsAereos sistema = new SistemaCompraTicketsAereos();
@@ -225,14 +226,14 @@ public class SistemaCompraTicketsAereos {
         int x = sc.nextInt();
 
         if (x == 1) {
-            sistema.Pasos();
+            sistema.paso1();
 
         } else if (x == 2) {
             //invocar e metodo de consultar reser
         }
     }
 
-    public void Pasos() {
+    public void paso1() {
 
         System.out.println("Debe mostrarse una lista de todos los  itinerarios");
         String[] lugares = {"QUITO", "GUAYAQUIL", "LIMA", "BUENOS AIRES", "SANTIAGO", "BOGOTÁ", "BRASILIA", "ASUNCIÓN", "MONTEVIDEO"};
@@ -266,7 +267,6 @@ public class SistemaCompraTicketsAereos {
 
             if (it.getOrigen().equals(origenC)) {
                 if (it.getDestino().equals(destinoC)) {
-
                     System.out.println("-----------------------" + num + "-----------------------");
                     System.out.println("CODIGO: " + it.getCodigoItinerario());
                     System.out.println("HORA SALIDA: " + it.getHoraSalida());
@@ -283,7 +283,6 @@ public class SistemaCompraTicketsAereos {
             veces++;
         }
 
-        double[] valores = new double[6];
         System.out.print("Elige el vuelo de ida: ");
         int elecIda = sc.nextInt();
         valores[0] = vueloa.get(elecIda - 1).getPrecio();
@@ -350,10 +349,11 @@ public class SistemaCompraTicketsAereos {
         } else if (tarifaRetorno.toUpperCase().equals("C")) {
             valores[5] = 90;
         }
-        for (int i = 0; i < valores.length; i++) {
-            System.out.println(valores[i]);
-        }
 
+    }
+
+    public void paso3() {
+        Scanner sc = new Scanner(System.in);
         System.out.println("*******************Paso3*********************");
         System.out.println("*********************************************\n");
         System.out.println("--------------DATOS PASAJERO-----------------\n");
@@ -377,8 +377,13 @@ public class SistemaCompraTicketsAereos {
         }
         System.out.println("¿Desea guardar los datos del pasajero y continuar con el pago (s/n)? ");
         sc.nextLine();
-        System.out.println("Ha completado el paso 3");
-        
+        System.out.println("Ha completado el paso 3\n");
+    }
+
+    public void paso4() {
+        System.out.println("*******************Paso4*********************");
+        System.out.println("*********************************************\n");
+
     }
 
     public void menuOperador() {

@@ -1,5 +1,5 @@
 package Reserva;
-
+import SistemaCompraTicketsAereos.*;
 
 public class Pago {
     //Atributos:
