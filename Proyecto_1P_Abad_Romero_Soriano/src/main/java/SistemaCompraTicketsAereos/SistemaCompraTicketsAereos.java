@@ -11,8 +11,11 @@ public class SistemaCompraTicketsAereos {
 
     static ArrayList<Usuario> usuarios = new ArrayList<>();
     static ArrayList<Cliente> clientes = new ArrayList<>();
+    static ArrayList<Operador> operadores = new ArrayList<>();
     static ArrayList<Reserva> reservas = new ArrayList<>();
     static ArrayList<Vuelo> vuelos = new ArrayList<>();
+    static ArrayList<Avion> aviones = new ArrayList<>();
+    //static ArrayList<Asiento> asientos = new ArrayList<>();
     static ArrayList<Itinerario> itinerarios = new ArrayList<>();
     
 
@@ -88,7 +91,97 @@ public class SistemaCompraTicketsAereos {
             } 
         } 
     }
-
+    
+    public void cargarOPeradores(){
+        ArrayList<String[]> parametros = ManejoArchivo.LeeFichero("operadores.txt");
+        for(String[] s: parametros){
+            String cedula = s[0];
+            double sueldo = Double.valueOf(s[1]);
+            
+            for(Usuario u: usuarios){
+                if(u.getCedula().equals(cedula)){
+                  Operador op = new Operador(u.getCedula(),u.getNombres(),u.getApellidos(),u.getEdad(),u.getCorreo(),u.getUsuario(),u.getContraseña(),u.getPerfil(),sueldo);
+                  operadores.add(op);
+                }
+            } 
+        } 
+    }
+    
+    public void cargarItinerarios(){
+        ArrayList<String[]> parametros = ManejoArchivo.LeeFichero("itinerarios.txt");
+        for(String[] s: parametros){
+            String codigo = s[0];
+            String origen = s[1];
+            String destino = s[2];
+            String horaSalida = s[3];
+            String horaLlegada = s[4];
+            String duracion = s[5];
+            
+            Itinerario i = new Itinerario(codigo,origen,destino,horaSalida,horaLlegada,duracion);
+            itinerarios.add(i);
+            
+        }
+        
+    }
+    
+    public void cargarAviones(){
+        ArrayList<String[]> parametros = ManejoArchivo.LeeFichero("vuelos.txt");
+        for(String[] s: parametros){
+            String codigoAvion = s[0];
+            int capacidad = Integer.valueOf(s[1]);
+            
+            Avion av = new Avion(codigoAvion,capacidad);
+            aviones.add(av);           
+        }        
+    }
+    
+    
+    public void cargarAsientos(){
+        ArrayList<String[]> parametros = ManejoArchivo.LeeFichero("vuelos.txt");
+        for(String[] s: parametros){
+            String codigoAvion = s[0];
+            int numAsiento = Integer.valueOf(s[1]);
+            String disponible = s[2];
+            
+            for(Avion a : aviones){
+            if(codigoAvion.equals(a.getCodigoAvion())){
+                if(disponible.equals("s"));
+                Disponibilidad d = Disponibilidad.SI;
+                Asiento as = new Asiento(a.getCodigoAvion(),numAsiento,d);
+                a.getAsientos().add(as);
+                }
+            }
+            
+        }
+    }
+    
+    public void cargarVuelos(){
+       ArrayList<String[]> parametros = ManejoArchivo.LeeFichero("vuelos.txt");
+       for(String[] s: parametros){
+            String codigoVuelo = s[0];
+            String codigoAvion = s[1];
+            String fechaSalida = s[3];
+            String fechaLlegada = s[4];
+            String codigoItinerario = s[5];
+            double precio = Double.valueOf(s[6]);
+            double precioMillas = Double.valueOf(s[7]);
+            
+            for(Avion a: aviones){
+                if(codigoAvion.equals(a.getCodigoAvion())){
+                    for(Itinerario i: itinerarios){
+                        if(codigoItinerario.equals(i.getCodigoItinerario())){
+                            Vuelo v = new Vuelo(codigoVuelo,codigoAvion,fechaSalida,fechaLlegada,codigoItinerario,precio,precioMillas);
+                            vuelos.add(v);
+                        }  
+                    }
+                }
+            }
+            
+            
+            
+       } 
+    }
+            
     public void ingreso() {
         SistemaCompraTicketsAereos sistema = new SistemaCompraTicketsAereos();
         Scanner sc = new Scanner(System.in);

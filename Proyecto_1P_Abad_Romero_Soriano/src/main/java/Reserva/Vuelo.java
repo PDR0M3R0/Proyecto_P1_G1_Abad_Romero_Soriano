@@ -4,20 +4,20 @@ import Aviones.Avion;
 public class Vuelo {
     //Atributos:
     protected String codigoVuelo;
-    protected Avion avion; //de aqui se asocia el codigo del avion
+    protected String codAvion; //de aqui se asocia el codigo del avion
     protected String fechaSalida; 
     protected String fechaLlegada;
-    protected Itinerario itinerario; //dea qui se asocia el codigo Itinerario
+    protected String codItine; //dea qui se asocia el codigo Itinerario
     protected double precio;
     protected double precioMillas;
     
     //Constructor: 
-    public Vuelo(String codigo, Avion avion , String fechaSalida, String fechaLlegada, Itinerario itinerario, double precio, int precioMillas){
+    public Vuelo(String codigo, String codAvion , String fechaSalida, String fechaLlegada, String itinerario, double precio, double precioMillas){
         this.codigoVuelo = codigo;
-        this.avion = avion;
+        this.codAvion = codAvion;
         this.fechaSalida = fechaSalida; 
         this.fechaLlegada = fechaLlegada;
-        this.itinerario = itinerario;
+        this.codItine = itinerario;
         this.precio = precio;
         this.precioMillas = precioMillas;
     }
@@ -28,8 +28,8 @@ public class Vuelo {
         this.codigoVuelo = codigo;
     }
     
-    public void setCodigoAvion(Avion avion){
-        this.avion = avion;
+    public void setCodigoAvion(String codAvion){
+        this.codAvion = codAvion;
     }
     
     public void setFechaSalida(String fechaSalida){
@@ -40,8 +40,8 @@ public class Vuelo {
         this.fechaLlegada = fechaLlegada;
     }  
             
-    public void setItinerario(Itinerario itinerario){
-        this.itinerario=itinerario;
+    public void setItinerario(String codItine){
+        this.codItine=codItine;
     }    
     
     public void setPrecio(double precio){
@@ -56,8 +56,8 @@ public class Vuelo {
         return codigoVuelo;
     }
 
-    public Avion getAvion() {
-        return avion;
+    public String getCodAvion() {
+        return codAvion;
     }
 
     public String getFechaSalida() {
@@ -68,8 +68,8 @@ public class Vuelo {
         return fechaLlegada;
     }
 
-    public Itinerario getItinerario() {
-        return itinerario;
+    public String getCodItine() {
+        return codItine;
     }
 
     public double getPrecio() {

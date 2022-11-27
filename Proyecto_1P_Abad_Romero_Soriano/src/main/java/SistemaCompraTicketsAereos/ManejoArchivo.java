@@ -22,10 +22,13 @@ public class ManejoArchivo {
             String linea;
             linea = br.readLine();
             while ((linea = br.readLine()) != null) {
+                if(linea.equals("...")){
+                   linea = br.readLine();
+                }else{
                 System.out.println(linea);
                 String[] parametrosObjeto = linea.split(",");
                 lineas.add(parametrosObjeto);
-
+                }
             }
 
         } catch (Exception e) {

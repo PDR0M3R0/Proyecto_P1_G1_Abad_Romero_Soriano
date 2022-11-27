@@ -7,19 +7,12 @@ public class Avion {
     //Variables de instancia:-------------------------------------------------
     public String codigoAvion;
     public int capacidad;
-    public static ArrayList<Asiento> asientos; //Una avion tiene 10 asientos
+    public ArrayList<Asiento> asientos = new ArrayList<>(); //Una avion tiene 10 asientos
     
     //Constructor:------------------------------------------------------------- 
-    public Avion(String codigoAvion,int capacidad,ArrayList<Asiento> asientos){
-        this.codigoAvion= codigoAvion;
-        this.capacidad = capacidad;
-        this.asientos = asientos;
-    }
-    
     public Avion(String codigoAvion,int capacidad){
-        this.codigoAvion = codigoAvion;
-        this.capacidad = capacidad;
-        this.asientos = new ArrayList<Asiento>(); //lista vacia de tipo Asiento
+        this.codigoAvion= codigoAvion;
+        this.capacidad = capacidad;  
     }
     
     //Metodos de clase:--------------------------------------------------------
@@ -57,14 +50,17 @@ public class Avion {
         } 
     }
     
-    public int generarAsiento(){
-        double ale = (int)(Math.random()*100);
+    public Asiento generarAsiento(){
+        double ale = (int)(Math.random()*100); //poner resecto capacidad
         int asientoAle = (int)ale;
+        
         if(ale == 100){
             asientoAle -= 2;
-            return asientoAle;
+            Asiento a = new Asiento(this.codigoAvion,asientoAle,Disponibilidad.NO);
+            return a;
         }else{
-            return asientoAle;
+            Asiento a = new Asiento(this.codigoAvion,asientoAle,Disponibilidad.NO);
+            return a;
         }
     }
     
@@ -72,22 +68,34 @@ public class Avion {
     public String toString(){
         return codigoAvion + ", " + capacidad;
     }
-    
-    public void setCodigoAvion(String cod){
-        this.codigoAvion = cod;
-    }
-    
-    public void setCapacidad(int i){
-        this.capacidad = i;
-    }
 
-    public String getCodigoAvion(){
+    public String getCodigoAvion() {
         return codigoAvion;
     }
-    
-    public int getCapacaidad(){
+
+    public void setCodigoAvion(String codigoAvion) {
+        this.codigoAvion = codigoAvion;
+    }
+
+    public int getCapacidad() {
         return capacidad;
     }
+
+    public void setCapacidad(int capacidad) {
+        this.capacidad = capacidad;
+    }
+
+    public ArrayList<Asiento> getAsientos() {
+        return asientos;
+    }
+
+    public void setAsientos(ArrayList<Asiento> asientos) {
+        this.asientos = asientos;
+    }
+    
+   
+    
+    
     
     
     
