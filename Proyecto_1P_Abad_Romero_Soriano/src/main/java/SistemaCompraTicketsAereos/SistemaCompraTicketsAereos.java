@@ -25,10 +25,10 @@ public class SistemaCompraTicketsAereos {
         sistema.cargaUsuarios();
         sistema.cargarClientes();
         sistema.cargarOPeradores();
-        //sistema.cargarAsientos();
-        //sistema.cargarAviones();
         sistema.cargarItinerarios();
-        //sistema.cargarVuelos();
+        sistema.cargarAsientos();
+        sistema.cargarAviones();
+        sistema.cargarVuelos();       
         sistema.ingreso();
 
     }
@@ -126,10 +126,10 @@ public class SistemaCompraTicketsAereos {
     }
 
     public void cargarAviones() {
-        ArrayList<String[]> parametros = ManejoArchivo.LeeFichero("vuelos.txt");
+        ArrayList<String[]> parametros = ManejoArchivo.LeeFichero("aviones.txt");
         for (String[] s : parametros) {
             String codigoAvion = s[0];
-            int capacidad = Integer.valueOf(s[1]);
+            int capacidad = Integer.parseInt(s[1]);
 
             Avion av = new Avion(codigoAvion, capacidad);
             aviones.add(av);
@@ -137,10 +137,10 @@ public class SistemaCompraTicketsAereos {
     }
 
     public void cargarAsientos() {
-        ArrayList<String[]> parametros = ManejoArchivo.LeeFichero("vuelos.txt");
+        ArrayList<String[]> parametros = ManejoArchivo.LeeFichero("asientos.txt");
         for (String[] s : parametros) {
             String codigoAvion = s[0];
-            int numAsiento = Integer.valueOf(s[1]);
+            String numAsiento = s[1];
             String disponible = s[2];
 
             for (Avion a : aviones) {
@@ -160,11 +160,11 @@ public class SistemaCompraTicketsAereos {
         for (String[] s : parametros) {
             String codigoVuelo = s[0];
             String codigoAvion = s[1];
-            String fechaSalida = s[3];
-            String fechaLlegada = s[4];
-            String codigoItinerario = s[5];
-            double precio = Double.valueOf(s[6]);
-            double precioMillas = Double.valueOf(s[7]);
+            String fechaSalida = s[2];
+            String fechaLlegada = s[3];
+            String codigoItinerario = s[4];
+            double precio = Double.parseDouble(s[5]);
+            double precioMillas = Double.parseDouble(s[6]);
 
             for (Avion a : aviones) {
                 if (codigoAvion.equals(a.getCodigoAvion())) {

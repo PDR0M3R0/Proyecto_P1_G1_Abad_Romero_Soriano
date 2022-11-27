@@ -7,12 +7,13 @@ public class Avion {
     //Variables de instancia:-------------------------------------------------
     public String codigoAvion;
     public int capacidad;
-    public ArrayList<Asiento> asientos = new ArrayList<>(); //Una avion tiene 10 asientos
+    public ArrayList<Asiento> asientos; //Una avion tiene 10 asientos
     
     //Constructor:------------------------------------------------------------- 
     public Avion(String codigoAvion,int capacidad){
         this.codigoAvion= codigoAvion;
         this.capacidad = capacidad;  
+        this.asientos = new ArrayList<>();
     }
     
     //Metodos de clase:--------------------------------------------------------
@@ -27,8 +28,8 @@ public class Avion {
          
         System.out.println("Excelente, por favor siga los siguientes pasos: ");
         System.out.println("Ingrese el numero de su asiento (1 - 98): ");
-        int numero = sc.nextInt();
-        Asiento asientoAvion = new Asiento(numero);
+        String codigoAsiento = sc.next();
+        Asiento asientoAvion = new Asiento(codigoAsiento);
         
         for(Asiento a: asientos){
             if (asientoAvion.getDisponibilidad() == Disponibilidad.SI){
@@ -54,12 +55,15 @@ public class Avion {
         double ale = (int)(Math.random()*100); //poner resecto capacidad
         int asientoAle = (int)ale;
         
+        
         if(ale == 100){
             asientoAle -= 2;
-            Asiento a = new Asiento(this.codigoAvion,asientoAle,Disponibilidad.NO);
+            String codigoAsiento = String.valueOf(asientoAle);
+            Asiento a = new Asiento(this.codigoAvion,codigoAsiento,Disponibilidad.NO);
             return a;
         }else{
-            Asiento a = new Asiento(this.codigoAvion,asientoAle,Disponibilidad.NO);
+            String codigoAsiento = String.valueOf(asientoAle);
+            Asiento a = new Asiento(this.codigoAvion,codigoAsiento,Disponibilidad.NO);
             return a;
         }
     }

@@ -8,20 +8,20 @@ public class Asiento{
     //Variables de Instancia:------------------------- 
     public String codigoAvion;
     public Disponibilidad disponible; //clase enum
-    public int numeroAsiento;
+    public String codigoAsiento;
 
     //Constructor:------------------------------------
     
-    public Asiento(String codigoAvion,int numeroAsiento, Disponibilidad disponible){
+    public Asiento(String codigoAvion,String codAsiento, Disponibilidad disponible){
         this.codigoAvion = codigoAvion;
         this.disponible = disponible;   
-        this.numeroAsiento = numeroAsiento;
+        this.codigoAsiento = codAsiento;
     }
     
-    public Asiento(int numeroAsiento){
+    public Asiento(String codigoAsiento){
         this.codigoAvion = "cualquiera";
         this.disponible = Disponibilidad.SI;
-        this.numeroAsiento=numeroAsiento;
+        this.codigoAsiento=codigoAsiento;
     }
       
     //metodos getters y setters:----------------------
@@ -29,11 +29,7 @@ public class Asiento{
     public void setDisponible(Disponibilidad disponible) {
         this.disponible = disponible;
     }
-    
-    public void setNumeroAsiento(int na){
-        this.numeroAsiento = na;
-    }
-    
+        
     public void setCodigoAvion(String ca){
         this.codigoAvion = ca;
     }
@@ -41,13 +37,19 @@ public class Asiento{
     public Disponibilidad getDisponibilidad(){
         return disponible;
     }
-    
-    public int getNumeroAsiento(){
-        return numeroAsiento;
-    }
   
     public String getCodigoAvion(){
         return codigoAvion;
     }
+
+    public String getCodigoAsiento() {
+        return codigoAsiento;
+    }
+
+    public void setCodigoAsiento(String codigoAsiento) {
+        this.codigoAsiento = codigoAsiento;
+    }
+    
+    
     
 }
