@@ -29,7 +29,7 @@ public class SistemaCompraTicketsAereos {
         sistema.cargarItinerarios();
         sistema.cargarAsientos();
         sistema.cargarAviones();
-        sistema.cargarVuelos();       
+        sistema.cargarVuelos();
         sistema.ingreso();
 
     }
@@ -263,16 +263,21 @@ public class SistemaCompraTicketsAereos {
 
             if (it.getOrigen().equals(origenC)) {
                 if (it.getDestino().equals(destinoC)) {
-
-                    System.out.println("-----------------------" + num + "-----------------------");
-                    System.out.println("CODIGO: " + it.getCodigoItinerario());
-                    System.out.println("HORA SALIDA: " + it.getHoraSalida());
-                    System.out.println("HORA LLEGADA: " + it.getHoraLlegada());
-                    System.out.println("DURACIÓN: " + it.getDuracion());
-                    System.out.println("AVION: ");
-                    System.out.println("PRECIO: ");
-                    System.out.println("COSTO MILLAS: ");
-                    num++;
+                    for (Vuelo vu : vuelos) {
+                        if (it.getCodigoItinerario().equals(vu.getCodItine())) {
+                            if (fecha_salida.equals(vu.getFechaSalida())) {
+                                System.out.println("-----------------------" + num + "-----------------------");
+                                System.out.println("CODIGO: " + it.getCodigoItinerario());
+                                System.out.println("HORA SALIDA: " + it.getHoraSalida());
+                                System.out.println("HORA LLEGADA: " + it.getHoraLlegada());
+                                System.out.println("DURACIÓN: " + it.getDuracion());
+                                System.out.println("AVION: " + vu.getCodAvion());
+                                System.out.println("PRECIO: " + vu.getPrecio());
+                                System.out.println("COSTO MILLAS: " + vu.getPrecioMillas());
+                                num++;
+                            }
+                        }
+                    }
                 }
             }
 
@@ -284,16 +289,22 @@ public class SistemaCompraTicketsAereos {
 
             if (it.getOrigen().equals(destinoC)) {
                 if (it.getDestino().equals(origenC)) {
+                    for (Vuelo vu : vuelos) {
+                        if (it.getCodigoItinerario().equals(vu.getCodItine())) {
+                            if (fecha_salida.equals(vu.getFechaSalida())) {
 
-                    System.out.println("-----------------------" + num + "-----------------------");
-                    System.out.println("CODIGO: " + it.getCodigoItinerario());
-                    System.out.println("HORA SALIDA: " + it.getHoraSalida());
-                    System.out.println("HORA LLEGADA: " + it.getHoraLlegada());
-                    System.out.println("DURACIÓN: " + it.getDuracion());
-                    System.out.println("AVION: ");
-                    System.out.println("PRECIO: ");
-                    System.out.println("COSTO MILLAS: ");
-                    num++;
+                                System.out.println("-----------------------" + num + "-----------------------");
+                                System.out.println("CODIGO: " + it.getCodigoItinerario());
+                                System.out.println("HORA SALIDA: " + it.getHoraSalida());
+                                System.out.println("HORA LLEGADA: " + it.getHoraLlegada());
+                                System.out.println("DURACIÓN: " + it.getDuracion());
+                                System.out.println("AVION: " + vu.getCodAvion());
+                                System.out.println("PRECIO: " + vu.getPrecio());
+                                System.out.println("COSTO MILLAS: " + vu.getPrecioMillas());
+                                num++;
+                            }
+                        }
+                    }
                 }
             }
 
@@ -313,13 +324,15 @@ public class SistemaCompraTicketsAereos {
         sc.nextLine();
         System.out.print("Tipo de documento(1. Cédula - 2. Pasaporte): ");
         String doc = sc.nextLine();
-        if(doc.equals("1")){
-        System.out.println("Número de documento: "+usuarios.get(0).getCedula());
-        }else{System.out.print("Número de documento: ");
-        sc.nextLine();}
+        if (doc.equals("1")) {
+            System.out.println("Número de documento: " + usuarios.get(0).getCedula());
+        } else {
+            System.out.print("Número de documento: ");
+            sc.nextLine();
+        }
         System.out.println("¿Desea guardar los datos del pasajero y continuar con el pago (s/n)? ");
-         sc.nextLine();
-         System.out.println("Ha completado el paso 3");
+        sc.nextLine();
+        System.out.println("Ha completado el paso 3");
     }
 
     public void menuOperador() {
