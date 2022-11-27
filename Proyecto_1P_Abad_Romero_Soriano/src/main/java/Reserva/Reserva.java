@@ -21,38 +21,6 @@ public class Reserva {
     
     
     //Metodos de la clase:
-    public void EleccionVuelos(){
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Debe mostrarse una lista de todos los  itinerarios");
-        String[] lugares = {"QUITO", "GUAYAQUIL", "LIMA", "BUENOS AIRES", "SANTIAGO", "BOGOTÁ", "BRASILIA", "ASUNCIÓN", "MONTEVIDEO"};
-        
-        System.out.println("---ORIGEN---");
-        
-        System.out.println("1.Quito\n2.Guayaquil\n3.Lima\n4.Santiago\n5.Bogotá\n6.Brasilia\n7.Asunción\n8.Montevideo");
-        System.out.print("Elija el punto de partida: ");
-        int origen = sc.nextInt();
-        sc.nextLine();
-        String origenC = lugares[origen - 1];
-
-        System.out.println("---DESTINO---");
-        System.out.println("1.Quito\n2.Guayaquil\n3.Lima\n4.Santiago\n5.Bogotá\n6.Brasilia\n7.Asunción\n8.Montevideo");
-
-        System.out.print("Elija el punto de destino: ");
-        int destino = sc.nextInt();
-        sc.nextLine();
-        String destinoC = lugares[destino - 1];
-        System.out.print("Fecha de salida: ");
-        String fecha_salida = sc.nextLine();
-        System.out.print("Fecha de llegada: ");
-        String fecha_retorno = sc.nextLine();
-        
-        
-        
-        //Hay que acceder por un for a la lista de cuelo para comparar y elegirlo 
-        //de lo contrario no existe y se le pide de nuevo
-        //hya que sobrecargar los constructor de itinerario, vuelo
-    }
-    
     public void AsignacionAsientos(){
         
     }
