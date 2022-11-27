@@ -16,6 +16,7 @@ public class SistemaCompraTicketsAereos {
     static ArrayList<Avion> aviones = new ArrayList<>();
     //static ArrayList<Asiento> asientos = new ArrayList<>();
     static ArrayList<Itinerario> itinerarios = new ArrayList<>();
+    static ArrayList<Usuario> usuarioa = new ArrayList<>();
 
     public static void main(String[] args) {
         SistemaCompraTicketsAereos sistema = new SistemaCompraTicketsAereos();
@@ -191,16 +192,21 @@ public class SistemaCompraTicketsAereos {
             if (elemento.getUsuario().equals(usuarioi)) {
                 if (elemento.getContraseña().equals(contraseñai)) {
                     if (elemento.getPerfil().equals(Perfil.S) || elemento.getPerfil().equals(Perfil.V)) {
+                        Usuario u = new Usuario(elemento.getCedula(), elemento.getNombres(), elemento.getApellidos(), elemento.getEdad(), elemento.getCorreo(), elemento.getUsuario(), elemento.getContraseña(), elemento.getPerfil());
+                        usuarioa.add(u);
                         sistema.menuCliente();
 
                     }
                     if (elemento.getPerfil().equals(Perfil.O)) {
+                        Usuario u = new Usuario(elemento.getCedula(), elemento.getNombres(), elemento.getApellidos(), elemento.getEdad(), elemento.getCorreo(), elemento.getUsuario(), elemento.getContraseña(), elemento.getPerfil());
+                        usuarioa.add(u);
                         sistema.menuOperador();
+
                     }
                 }
             }
-        }
 
+        }
     }
 
     public void menuCliente() {
@@ -271,7 +277,7 @@ public class SistemaCompraTicketsAereos {
             }
 
         }
-        
+
         System.out.println("\n----------Vuelos disponibles RETORNO-------------\n");
         num = 1;
         for (Itinerario it : itinerarios) {
@@ -292,9 +298,29 @@ public class SistemaCompraTicketsAereos {
             }
 
         }
-
+        System.out.println("*******************Paso3*********************");
+        System.out.println("*********************************************\n");
+        System.out.println("--------------DATOS PASAJERO-----------------\n");
+        System.out.println("Completa los datos del pasajero:");
+        System.out.println("Nombres: " + usuarioa.get(0).getNombres());
+        System.out.println("Apellidos: " + usuarios.get(0).getApellidos());
+        System.out.println("Correo: " + usuarios.get(0).getCorreo());
+        System.out.print("Fecha nacimiento: ");
+        sc.nextLine();
+        System.out.print("Género (1. Masculino - 2. Femenino ): ");
+        sc.nextLine();
+        System.out.print("Nacionalidad: ");
+        sc.nextLine();
+        System.out.print("Tipo de documento(1. Cédula - 2. Pasaporte): ");
+        String doc = sc.nextLine();
+        if(doc.equals("1")){
+        System.out.println("Número de documento: "+usuarios.get(0).getCedula());
+        }else{System.out.print("Número de documento: ");
+        sc.nextLine();}
+        System.out.println("¿Desea guardar los datos del pasajero y continuar con el pago (s/n)? ");
+         sc.nextLine();
+         System.out.println("Ha completado el paso 3");
     }
-    
 
     public void menuOperador() {
         System.out.println("\n1. Consultar usuarios");
