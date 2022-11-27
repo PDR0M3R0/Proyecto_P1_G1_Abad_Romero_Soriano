@@ -30,7 +30,7 @@ public class SistemaCompraTicketsAereos {
         sistema.cargarItinerarios();
         //sistema.cargarVuelos();
         sistema.ingreso();
-        sistema.Paso1();
+
     }
 
     public void cargaUsuarios() {
@@ -218,14 +218,14 @@ public class SistemaCompraTicketsAereos {
         int x = sc.nextInt();
 
         if (x == 1) {
-            sistema.EleccionOrigenDestino();
+            sistema.Pasos();
 
         } else if (x == 2) {
             //invocar e metodo de consultar reser
         }
     }
 
-    public void EleccionOrigenDestino() {
+    public void Pasos() {
 
         System.out.println("Debe mostrarse una lista de todos los  itinerarios");
         String[] lugares = {"QUITO", "GUAYAQUIL", "LIMA", "BUENOS AIRES", "SANTIAGO", "BOGOTÁ", "BRASILIA", "ASUNCIÓN", "MONTEVIDEO"};
@@ -234,7 +234,7 @@ public class SistemaCompraTicketsAereos {
 
         System.out.println("1.Quito\n2.Guayaquil\n3.Lima\n4.Santiago\n5.Bogotá\n6.Brasilia\n7.Asunción\n8.Montevideo");
         Scanner sc = new Scanner(System.in);
-        System.out.println("Elija el punto de partida: ");
+        System.out.print("Elija el punto de partida: ");
         int origen = sc.nextInt();
 
         String origenC = lugares[origen - 1];
@@ -249,29 +249,52 @@ public class SistemaCompraTicketsAereos {
         System.out.print("Fecha de llegada: ");
         String fecha_retorno = sc.nextLine();
 
-        //Hay que acceder por un for a la lista de cuelo para comparar y elegirlo 
-        //de lo contrario no existe y se le pide de nuevo
-        //hya que sobrecargar los constructor de itinerario, vuelo
-    }
-
-    public void Paso1() {
         System.out.println("*******************Paso1*********************");
         System.out.println("*********************************************\n");
         System.out.println("----------Vuelos disponibles IDA-------------\n");
+        int num = 1;
+        for (Itinerario it : itinerarios) {
 
-        for (int i = 0; i < 3; i++) {
-            int num= i + 1;
-            System.out.println("-----------------------" + num + "-----------------------");
-            System.out.println("CODIGO: "+itinerarios.get(i).getCodigoItinerario());
-            System.out.println("HORA SALIDA: "+itinerarios.get(i).getHoraSalida());
-            System.out.println("HORA LLEGADA: "+itinerarios.get(i).getHoraLlegada());
-            System.out.println("DURACIÓN: "+itinerarios.get(i).getDuracion());
-            System.out.println("AVION: ");
-            System.out.println("PRECIO: ");
-            System.out.println("COSTO MILLAS: ");
+            if (it.getOrigen().equals(origenC)) {
+                if (it.getDestino().equals(destinoC)) {
+
+                    System.out.println("-----------------------" + num + "-----------------------");
+                    System.out.println("CODIGO: " + it.getCodigoItinerario());
+                    System.out.println("HORA SALIDA: " + it.getHoraSalida());
+                    System.out.println("HORA LLEGADA: " + it.getHoraLlegada());
+                    System.out.println("DURACIÓN: " + it.getDuracion());
+                    System.out.println("AVION: ");
+                    System.out.println("PRECIO: ");
+                    System.out.println("COSTO MILLAS: ");
+                    num++;
+                }
+            }
+
         }
         
+        System.out.println("\n----------Vuelos disponibles RETORNO-------------\n");
+        num = 1;
+        for (Itinerario it : itinerarios) {
+
+            if (it.getOrigen().equals(destinoC)) {
+                if (it.getDestino().equals(origenC)) {
+
+                    System.out.println("-----------------------" + num + "-----------------------");
+                    System.out.println("CODIGO: " + it.getCodigoItinerario());
+                    System.out.println("HORA SALIDA: " + it.getHoraSalida());
+                    System.out.println("HORA LLEGADA: " + it.getHoraLlegada());
+                    System.out.println("DURACIÓN: " + it.getDuracion());
+                    System.out.println("AVION: ");
+                    System.out.println("PRECIO: ");
+                    System.out.println("COSTO MILLAS: ");
+                    num++;
+                }
+            }
+
+        }
+
     }
+    
 
     public void menuOperador() {
         System.out.println("\n1. Consultar usuarios");
