@@ -1,0 +1,10 @@
+codigoAvion,numeroAsiento,disponible
+Airbus A319,A1,S
+Airbus A319,B1,N
+Airbus A319,C1,N
+...
+...
+...
+Airbus A319,A61,S
+Airbus A319,B61,S
+Airbus A319,C61,S
