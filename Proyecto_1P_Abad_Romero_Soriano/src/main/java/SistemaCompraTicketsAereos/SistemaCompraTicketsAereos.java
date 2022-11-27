@@ -17,6 +17,7 @@ public class SistemaCompraTicketsAereos {
     //static ArrayList<Asiento> asientos = new ArrayList<>();
     static ArrayList<Itinerario> itinerarios = new ArrayList<>();
     static ArrayList<Usuario> usuarioa = new ArrayList<>();
+    static ArrayList<Vuelo> vueloa = new ArrayList<>();
 
     public static void main(String[] args) {
         SistemaCompraTicketsAereos sistema = new SistemaCompraTicketsAereos();
@@ -259,56 +260,100 @@ public class SistemaCompraTicketsAereos {
         System.out.println("*********************************************\n");
         System.out.println("----------Vuelos disponibles IDA-------------\n");
         int num = 1;
+        int veces = 0;
+
         for (Itinerario it : itinerarios) {
 
             if (it.getOrigen().equals(origenC)) {
                 if (it.getDestino().equals(destinoC)) {
-                    for (Vuelo vu : vuelos) {
-                        if (it.getCodigoItinerario().equals(vu.getCodItine())) {
-                            if (fecha_salida.equals(vu.getFechaSalida())) {
-                                System.out.println("-----------------------" + num + "-----------------------");
-                                System.out.println("CODIGO: " + it.getCodigoItinerario());
-                                System.out.println("HORA SALIDA: " + it.getHoraSalida());
-                                System.out.println("HORA LLEGADA: " + it.getHoraLlegada());
-                                System.out.println("DURACIÓN: " + it.getDuracion());
-                                System.out.println("AVION: " + vu.getCodAvion());
-                                System.out.println("PRECIO: " + vu.getPrecio());
-                                System.out.println("COSTO MILLAS: " + vu.getPrecioMillas());
-                                num++;
-                            }
-                        }
-                    }
-                }
-            }
 
+                    System.out.println("-----------------------" + num + "-----------------------");
+                    System.out.println("CODIGO: " + it.getCodigoItinerario());
+                    System.out.println("HORA SALIDA: " + it.getHoraSalida());
+                    System.out.println("HORA LLEGADA: " + it.getHoraLlegada());
+                    System.out.println("DURACIÓN: " + it.getDuracion());
+                    System.out.println("AVION: " + vuelos.get(veces).getCodAvion());
+                    System.out.println("PRECIO: " + vuelos.get(veces).getPrecio());
+                    System.out.println("COSTO MILLAS: " + vuelos.get(veces).getPrecioMillas());
+                    vueloa.add(vuelos.get(veces));
+                    num++;
+                }
+
+            }
+            veces++;
+        }
+
+        double[] valores = new double[6];
+        System.out.print("Elige el vuelo de ida: ");
+        int elecIda = sc.nextInt();
+        valores[0] = vueloa.get(elecIda - 1).getPrecio();
+        valores[1] = vueloa.get(elecIda - 1).getPrecioMillas();
+        sc.nextLine();
+        int vueloasize = vueloa.size();
+        System.out.println("TARIFAS:\n");
+        System.out.println("A. Economy (+0)");
+        System.out.println("B. Premium economy (+60)");
+        System.out.println("C. Premium business (+90)");
+        System.out.println("Elige la tarifa para tu vuelo: ");
+        String tarifaIda = sc.nextLine();
+
+        if (tarifaIda.toUpperCase().equals("A")) {
+            valores[2] = 0;
+        } else if (tarifaIda.toUpperCase().equals("B")) {
+            valores[2] = 60;
+        } else if (tarifaIda.toUpperCase().equals("C")) {
+            valores[2] = 90;
         }
 
         System.out.println("\n----------Vuelos disponibles RETORNO-------------\n");
         num = 1;
+        veces = 0;
         for (Itinerario it : itinerarios) {
 
             if (it.getOrigen().equals(destinoC)) {
                 if (it.getDestino().equals(origenC)) {
-                    for (Vuelo vu : vuelos) {
-                        if (it.getCodigoItinerario().equals(vu.getCodItine())) {
-                            if (fecha_salida.equals(vu.getFechaSalida())) {
 
-                                System.out.println("-----------------------" + num + "-----------------------");
-                                System.out.println("CODIGO: " + it.getCodigoItinerario());
-                                System.out.println("HORA SALIDA: " + it.getHoraSalida());
-                                System.out.println("HORA LLEGADA: " + it.getHoraLlegada());
-                                System.out.println("DURACIÓN: " + it.getDuracion());
-                                System.out.println("AVION: " + vu.getCodAvion());
-                                System.out.println("PRECIO: " + vu.getPrecio());
-                                System.out.println("COSTO MILLAS: " + vu.getPrecioMillas());
-                                num++;
-                            }
-                        }
-                    }
+                    System.out.println("-----------------------" + num + "-----------------------");
+                    System.out.println("CODIGO: " + it.getCodigoItinerario());
+                    System.out.println("HORA SALIDA: " + it.getHoraSalida());
+                    System.out.println("HORA LLEGADA: " + it.getHoraLlegada());
+                    System.out.println("DURACIÓN: " + it.getDuracion());
+                    System.out.println("AVION: " + vuelos.get(veces).getCodAvion());
+                    System.out.println("PRECIO: " + vuelos.get(veces).getPrecio());
+                    System.out.println("COSTO MILLAS: " + vuelos.get(veces).getPrecioMillas());
+                    vueloa.add(vuelos.get(veces));
+                    num++;
                 }
-            }
 
+            }
+            veces++;
         }
+
+        System.out.print("Elige el vuelo de ida: ");
+        int elecRetorno = sc.nextInt();
+        int elecRetor = vueloasize + elecRetorno;
+        valores[3] = vueloa.get(elecRetor - 1).getPrecio();
+        valores[4] = vueloa.get(elecRetor - 1).getPrecioMillas();
+        sc.nextLine();
+
+        System.out.println("TARIFAS:\n");
+        System.out.println("A. Economy (+0)");
+        System.out.println("B. Premium economy (+60)");
+        System.out.println("C. Premium business (+90)");
+        System.out.println("Elige la tarifa para tu vuelo: ");
+        String tarifaRetorno = sc.nextLine();
+
+        if (tarifaRetorno.toUpperCase().equals("A")) {
+            valores[5] = 0;
+        } else if (tarifaRetorno.toUpperCase().equals("B")) {
+            valores[5] = 60;
+        } else if (tarifaRetorno.toUpperCase().equals("C")) {
+            valores[5] = 90;
+        }
+        for (int i = 0; i < valores.length; i++) {
+            System.out.println(valores[i]);
+        }
+
         System.out.println("*******************Paso3*********************");
         System.out.println("*********************************************\n");
         System.out.println("--------------DATOS PASAJERO-----------------\n");
@@ -333,6 +378,7 @@ public class SistemaCompraTicketsAereos {
         System.out.println("¿Desea guardar los datos del pasajero y continuar con el pago (s/n)? ");
         sc.nextLine();
         System.out.println("Ha completado el paso 3");
+        
     }
 
     public void menuOperador() {
