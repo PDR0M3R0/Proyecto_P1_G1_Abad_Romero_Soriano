@@ -25,7 +25,7 @@ public class ManejoArchivo {
                 if(linea.equals("...")){
                    linea = br.readLine();
                 }else{
-                System.out.println(linea);
+                //System.out.println(linea);
                 String[] parametrosObjeto = linea.split(",");
                 lineas.add(parametrosObjeto);
                 }

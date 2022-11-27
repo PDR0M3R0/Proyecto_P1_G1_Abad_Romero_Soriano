@@ -80,5 +80,10 @@ public class Vuelo {
         return precioMillas;
     }
     
+    @Override
+    public String toString(){
+        return codigoVuelo+" ,"+codAvion+" ,"+fechaSalida+" ,"+fechaLlegada+" ,"+codItine+" ,"+precio+" ,"+precioMillas;
+    }
+    
     
 }

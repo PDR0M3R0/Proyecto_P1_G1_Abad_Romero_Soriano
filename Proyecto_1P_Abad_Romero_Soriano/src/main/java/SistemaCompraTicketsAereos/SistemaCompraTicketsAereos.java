@@ -16,6 +16,7 @@ public class SistemaCompraTicketsAereos {
     static ArrayList<Avion> aviones = new ArrayList<>();
     //static ArrayList<Asiento> asientos = new ArrayList<>();
     static ArrayList<Itinerario> itinerarios = new ArrayList<>();
+    
     static ArrayList<Usuario> usuarioa = new ArrayList<>();
     static ArrayList<Vuelo> vueloa = new ArrayList<>();
     double[] valores = new double[6];
@@ -33,6 +34,8 @@ public class SistemaCompraTicketsAereos {
         sistema.cargarAviones();
         sistema.cargarVuelos();
         sistema.ingreso();
+        
+        
 
     }
 
@@ -320,7 +323,7 @@ public class SistemaCompraTicketsAereos {
                     System.out.println("AVION: " + vuelos.get(veces).getCodAvion());
                     System.out.println("PRECIO: " + vuelos.get(veces).getPrecio());
                     System.out.println("COSTO MILLAS: " + vuelos.get(veces).getPrecioMillas());
-                    vueloa.add(vuelos.get(veces));
+                    vueloa.add(vuelos.get(veces));  //----------------------------------------------------vuelo se añade a vueloa
                     num++;
                 }
 
@@ -349,9 +352,41 @@ public class SistemaCompraTicketsAereos {
         } else if (tarifaRetorno.toUpperCase().equals("C")) {
             valores[5] = 90;
         }
-
-    }
-
+        
+        System.out.println("*******************Paso2*********************");
+        System.out.println("*********************************************\n");
+        
+        for(Vuelo v: vueloa){
+            System.out.println(v);
+        }
+        
+        for(Usuario u:usuarioa){
+            System.out.println(u);
+        }
+        
+        String vIda = vueloa.get(elecIda - 1).getCodAvion();  //codigo de vuelo de Ida
+        for(Avion a:aviones){
+            if(vIda.equals(a.getCodigoAvion())){
+                ArrayList<Asiento> asientos = a.getAsientos();
+                Asiento asiento = a.generarAsiento();
+                for(Asiento aa:asientos){
+                    System.out.println("Para tu vuelo de ida "+vIda+" se te ha asignado el asiento " +asiento.codigoAsiento );
+                }
+            }
+        }
+        
+        String vRetor = vueloa.get(elecRetor-1).getCodAvion(); //codigo de vuelo de Retorno
+        for(Avion a:aviones){
+            if(vRetor.equals(a.getCodigoAvion())){
+                ArrayList<Asiento> asientos = a.getAsientos();
+                Asiento asiento = a.generarAsiento();
+                for(Asiento aa:asientos){
+                    System.out.println("Para tu vuelo de ida "+vRetor+" se te ha asignado el asiento " +asiento.codigoAsiento );
+                }
+            }
+        }
+    } 
+    
     public void paso3() {
         Scanner sc = new Scanner(System.in);
         System.out.println("*******************Paso3*********************");
