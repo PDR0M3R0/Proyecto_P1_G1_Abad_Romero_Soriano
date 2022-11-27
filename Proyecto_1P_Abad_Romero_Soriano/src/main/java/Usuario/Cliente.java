@@ -4,7 +4,6 @@ import Reserva.*;
 public class Cliente extends Usuario {
     //Atributos
     public String tarjeta;
-
     //Constructor
     public Cliente(String cedula, String nombres, String apellidos, String edad, String correo, String usuario, String contraseña, Perfil perfil,String tarjeta) {
         super(cedula, nombres, apellidos, edad, correo, usuario, contraseña, perfil);

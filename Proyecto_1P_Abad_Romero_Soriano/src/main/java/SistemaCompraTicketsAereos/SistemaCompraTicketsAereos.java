@@ -16,7 +16,7 @@ public class SistemaCompraTicketsAereos {
     static ArrayList<Avion> aviones = new ArrayList<>();
     //static ArrayList<Asiento> asientos = new ArrayList<>();
     static ArrayList<Itinerario> itinerarios = new ArrayList<>();
-    
+
     static ArrayList<Usuario> usuarioa = new ArrayList<>();
     static ArrayList<Vuelo> vueloa = new ArrayList<>();
     double[] valores = new double[6];
@@ -34,8 +34,6 @@ public class SistemaCompraTicketsAereos {
         sistema.cargarAviones();
         sistema.cargarVuelos();
         sistema.ingreso();
-        
-        
 
     }
 
@@ -219,7 +217,6 @@ public class SistemaCompraTicketsAereos {
         System.out.println("\n1. Comprar tickets aéreos");
 
         //color do while para repetir este
-        System.out.println("1. Comprar tickets aéreos");
         System.out.println("2. Consultar reservas");
         System.out.println("3. Salir");
 
@@ -230,6 +227,8 @@ public class SistemaCompraTicketsAereos {
 
         if (x == 1) {
             sistema.paso1();
+            sistema.paso4();
+            sistema.paso3();
 
         } else if (x == 2) {
             //invocar e metodo de consultar reser
@@ -352,41 +351,41 @@ public class SistemaCompraTicketsAereos {
         } else if (tarifaRetorno.toUpperCase().equals("C")) {
             valores[5] = 90;
         }
-        
+
         System.out.println("*******************Paso2*********************");
         System.out.println("*********************************************\n");
-        
-        for(Vuelo v: vueloa){
+
+        for (Vuelo v : vueloa) {
             System.out.println(v);
         }
-        
-        for(Usuario u:usuarioa){
+
+        for (Usuario u : usuarioa) {
             System.out.println(u);
         }
-        
+
         String vIda = vueloa.get(elecIda - 1).getCodAvion();  //codigo de vuelo de Ida
-        for(Avion a:aviones){
-            if(vIda.equals(a.getCodigoAvion())){
+        for (Avion a : aviones) {
+            if (vIda.equals(a.getCodigoAvion())) {
                 ArrayList<Asiento> asientos = a.getAsientos();
                 Asiento asiento = a.generarAsiento();
-                for(Asiento aa:asientos){
-                    System.out.println("Para tu vuelo de ida "+vIda+" se te ha asignado el asiento " +asiento.codigoAsiento );
+                for (Asiento aa : asientos) {
+                    System.out.println("Para tu vuelo de ida " + vIda + " se te ha asignado el asiento " + asiento.codigoAsiento);
                 }
             }
         }
-        
-        String vRetor = vueloa.get(elecRetor-1).getCodAvion(); //codigo de vuelo de Retorno
-        for(Avion a:aviones){
-            if(vRetor.equals(a.getCodigoAvion())){
+
+        String vRetor = vueloa.get(elecRetor - 1).getCodAvion(); //codigo de vuelo de Retorno
+        for (Avion a : aviones) {
+            if (vRetor.equals(a.getCodigoAvion())) {
                 ArrayList<Asiento> asientos = a.getAsientos();
                 Asiento asiento = a.generarAsiento();
-                for(Asiento aa:asientos){
-                    System.out.println("Para tu vuelo de ida "+vRetor+" se te ha asignado el asiento " +asiento.codigoAsiento );
+                for (Asiento aa : asientos) {
+                    System.out.println("Para tu vuelo de ida " + vRetor + " se te ha asignado el asiento " + asiento.codigoAsiento);
                 }
             }
         }
-    } 
-    
+    }
+
     public void paso3() {
         Scanner sc = new Scanner(System.in);
         System.out.println("*******************Paso3*********************");
@@ -418,7 +417,36 @@ public class SistemaCompraTicketsAereos {
     public void paso4() {
         System.out.println("*******************Paso4*********************");
         System.out.println("*********************************************\n");
+        System.out.println("-----------------PAGO------------------\n");
+        System.out.println("Descripción:\n");
+        double subtotal = valores[0] + valores[1] + valores[3] + valores[5];
 
+        System.out.println("Subtotal: " + subtotal);
+
+        int descuento = 0;
+
+        if (usuarioa.get(0).getPerfil().equals(Perfil.V)) {
+
+            for (Cliente cl : clientes) {
+
+                System.out.println(usuarioa.get(0).getCedula());
+
+                if (usuarioa.get(0).getCedula().equals(cl.getCedula())) {
+
+                    VIP vi = (VIP) cl;
+                    if (vi.getTipoVIP().equals(TipoVIP.GOLDPASS)) {
+                        descuento = 20;
+                        System.out.println("Descuento: " + descuento + "% (cliente vip " + vi.getTipoVIP() + ")");
+                    } else if (vi.getTipoVIP().equals(TipoVIP.PLATINUMPASS)) {
+                        descuento = 30;
+                        System.out.println("Descuento: " + descuento + "% (cliente vip " + vi.getTipoVIP() + ")");
+                    }
+                }
+
+            }
+        } else {
+            System.out.println("Descuento: " + descuento + "% (cliente STANDARD)");
+        }
     }
 
     public void menuOperador() {
