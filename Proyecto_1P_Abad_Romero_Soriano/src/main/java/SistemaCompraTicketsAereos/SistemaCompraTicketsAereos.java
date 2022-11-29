@@ -39,10 +39,8 @@ public class SistemaCompraTicketsAereos {
         sistema.cargarVuelos();
         
         sistema.ingreso();
-        sistema.paso1();
-        sistema.Paso2();
-        sistema.paso3();
-        sistema.paso4();
+       
+        
     }
 
     public void cargaUsuarios() {
@@ -195,13 +193,17 @@ public class SistemaCompraTicketsAereos {
     public void ingreso() {
         SistemaCompraTicketsAereos sistema = new SistemaCompraTicketsAereos();
         Scanner sc = new Scanner(System.in);
+        
         System.out.print("USUARIO: ");
         String usuarioi = sc.nextLine();
+        
         System.out.print("CONTRASEÑA: ");
         String contraseñai = sc.nextLine();
+        
         for (Usuario elemento : usuarios) {
             if (elemento.getUsuario().equals(usuarioi)) {
                 if (elemento.getContraseña().equals(contraseñai)) {
+                    
                     if (elemento.getPerfil().equals(Perfil.S) || elemento.getPerfil().equals(Perfil.V)) {
                         Usuario u = new Usuario(elemento.getCedula(), elemento.getNombres(), elemento.getApellidos(), elemento.getEdad(), elemento.getCorreo(), elemento.getUsuario(), elemento.getContraseña(), elemento.getPerfil());
                         usuarioa.add(u);
@@ -210,11 +212,14 @@ public class SistemaCompraTicketsAereos {
                     }
                     if (elemento.getPerfil().equals(Perfil.O)) {
                         Usuario u = new Usuario(elemento.getCedula(), elemento.getNombres(), elemento.getApellidos(), elemento.getEdad(), elemento.getCorreo(), elemento.getUsuario(), elemento.getContraseña(), elemento.getPerfil());
-                        usuarioa.add(u);
+                        
                         sistema.menuOperador();
-
                     }
-                }
+                }else{
+                    System.out.println("Contraseña incorrecta!");
+                }  
+            }else{
+                System.out.println("Usuario incorrecto!");
             }
 
         }
@@ -235,6 +240,7 @@ public class SistemaCompraTicketsAereos {
 
         if (x == 1) {
             sistema.paso1();
+            sistema.paso2();
             sistema.paso4();
             sistema.paso3();
 
@@ -364,23 +370,24 @@ public class SistemaCompraTicketsAereos {
         }
     }
     
-    public void Paso2(){
+    public void paso2(){
         System.out.println("*******************Paso2*********************");
         System.out.println("*********************************************\n");
         
-        for (Vuelo v : vueloa) {
-            System.out.println(v);
-        }
-
-        for (Usuario u : usuarioa) {
-            System.out.println(u);
-        }
+//        for (Vuelo v : vueloa) {
+//            System.out.println(v);
+//        }
+//
+//        for (Usuario u : usuarioa) {
+//            System.out.println(u);
+//        }
 
         String vIda = vueloa.get(idaElec - 1).getCodAvion();  //codigo de vuelo de Ida
         for (Avion a : aviones) {
             if (vIda.equals(a.getCodigoAvion())) {
-                ArrayList<Asiento> asientos = a.getAsientos();
+                ArrayList<Asiento> asientos = a.getAsientos(); //tengo a disposicion la lista de asientos de ese avion
                 Asiento asiento = a.generarAsiento();
+                asientos.add(asiento);
                 for (Asiento aa : asientos) {
                     System.out.println("Para tu vuelo de ida " + vIda + " se te ha asignado el asiento " + asiento.codigoAsiento);
                 }
