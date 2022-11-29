@@ -16,12 +16,14 @@ public class SistemaCompraTicketsAereos {
     static ArrayList<Avion> aviones = new ArrayList<>();
     //static ArrayList<Asiento> asientos = new ArrayList<>();
     static ArrayList<Itinerario> itinerarios = new ArrayList<>();
-
+    
+    //Variable locales para los metodos:
     static ArrayList<Usuario> usuarioa = new ArrayList<>();
     static ArrayList<Vuelo> vueloa = new ArrayList<>();
     double[] valores = new double[6];
     int idaElec = 0;
     int retorElec = 0;
+    
 
     public static void main(String[] args) {
         SistemaCompraTicketsAereos sistema = new SistemaCompraTicketsAereos();
@@ -35,8 +37,12 @@ public class SistemaCompraTicketsAereos {
         sistema.cargarAsientos();
         sistema.cargarAviones();
         sistema.cargarVuelos();
+        
         sistema.ingreso();
-
+        sistema.paso1();
+        sistema.Paso2();
+        sistema.paso3();
+        sistema.paso4();
     }
 
     public void cargaUsuarios() {
@@ -362,9 +368,6 @@ public class SistemaCompraTicketsAereos {
         System.out.println("*******************Paso2*********************");
         System.out.println("*********************************************\n");
         
-        
-        
-        
         for (Vuelo v : vueloa) {
             System.out.println(v);
         }
@@ -429,66 +432,54 @@ public class SistemaCompraTicketsAereos {
         System.out.println("*********************************************\n");
         System.out.println("-----------------PAGO------------------\n");
         System.out.println("Descripción:\n");
+        
+        //Recursos:
         double subtotal = valores[0] + valores[1] + valores[3] + valores[5];
         Scanner sc = new Scanner(System.in);
         System.out.println("Subtotal: " + subtotal);
-
         double descuento = 0;
 
         if (usuarioa.get(0).getPerfil().equals(Perfil.V)) {
 
             for (Cliente cl : clientes) {
+                
                 System.out.println(usuarioa.get(0).getCedula());
+                
                 if (usuarioa.get(0).getCedula().equals(cl.getCedula())) {
+                    
                     VIP vi = (VIP) cl;
+                    
+                    
+                    
                     if (vi.getTipoVIP().equals(TipoVIP.GOLDPASS)) {
-
                         descuento = 0.2d;
-                        System.out.println("Descuento: 20% (cliente vip " + vi.getTipoVIP() + ")");
+                        System.out.println("Descuento: "+descuento);
+                        
+                        descuento = 0.2d;
                         double impuesto = 0.12d;
                         double subtotalIVA = (impuesto*subtotal);
                         subtotal += subtotalIVA;
-                        subtotal -= (descuento*subtotal);
-        
+
                         System.out.println("TOTAL: "+subtotal);
                         System.out.println("IVA: "+subtotalIVA);
-                        System.out.println("TOTAL A PAGAR: "+subtotal+"\n");
-                        
+                        System.out.println("TOTAL A PAGAR: "+subtotal+"\n");  
+
                         System.out.println("Formas de pago:");
                         System.out.println("1. Tarjeta de credito");
                         System.out.println("2. Millas\n");
-                        
-                        System.out.println("Elija su forma de pago: ");
-                        int formaPago = sc.nextInt();
-                        
-                        if(formaPago == 1){
-                            String numeroTar = sc.next();
-                            Cliente clienteVip = (Cliente)cl;
-                            
-                            if(numeroTar.equals(clienteVip.tarjeta)){
-                                System.out.println("Estas seguro de pagar el vuelo (s/n): ");
-                                String confirmar = sc.next();
-                                
-                                if(confirmar == "1"){
-                                
-                                }
-                            }
-                        }
                     
-                        
-                        
                     }else if (vi.getTipoVIP().equals(TipoVIP.PLATINUMPASS)) {
                         descuento = 0.3d;
-                        System.out.println("Descuento: 30% (cliente vip " + vi.getTipoVIP() + ")");
+                        System.out.println("Descuento: "+descuento);
+                        
                         double impuesto = 0.12d;
                         double subtotalIVA = (impuesto*subtotal);
                         subtotal += subtotalIVA;
-                        subtotal -= (descuento*subtotal);
-        
+
                         System.out.println("TOTAL: "+subtotal);
                         System.out.println("IVA: "+subtotalIVA);
-                        System.out.println("TOTAL A PAGAR: "+subtotal+"\n");
-                        
+                        System.out.println("TOTAL A PAGAR: "+subtotal+"\n");  
+
                         System.out.println("Formas de pago:");
                         System.out.println("1. Tarjeta de credito");
                         System.out.println("2. Millas\n");
@@ -496,22 +487,41 @@ public class SistemaCompraTicketsAereos {
                 }
                 }
         }else {
-        System.out.println("Descuento: No aplica (cliente STANDARD)");              
+            System.out.println("Descuento: No aplica (cliente STANDARD)"); 
+            double impuesto = 0.12d;
+            double subtotalIVA = (impuesto*subtotal);
+            subtotal += subtotalIVA;
+            System.out.println("TOTAL: "+subtotal);
+            System.out.println("IVA: "+subtotalIVA);
+            System.out.println("TOTAL A PAGAR: "+subtotal+"\n");  
+            System.out.println("Formas de pago:");
+            System.out.println("1. Tarjeta de credito");
+            System.out.println("2. Millas\n");
         }
-        double impuesto = 0.12d;
-        double subtotalIVA = (impuesto*subtotal);
-        subtotal += subtotalIVA;
         
-        System.out.println("TOTAL: "+subtotal);
-        System.out.println("IVA: "+subtotalIVA);
-        System.out.println("TOTAL A PAGAR: "+subtotal+"\n");  
+        System.out.println("Ejlite tu forma de pago: ");
+        int opcion = sc.nextInt();
         
-        System.out.println("Formas de pago:");
-        System.out.println("1. Tarjeta de credito");
-        System.out.println("2. Millas\n");
-        
-        
-        
+        if(opcion == 1){
+            //Cliente clientePagar = (Cliente)usuarioa;
+            //String numTarjeta = clientePagar.getTarjeta();
+            //System.out.println(numTarjeta);
+            System.out.println(vueloa);
+            System.out.println(usuarioa);
+            
+        }else if (opcion == 2){
+            Cliente clientePagar = (Cliente)usuarioa.get(0);
+            String numTarjeta = clientePagar.getTarjeta();
+            System.out.println(numTarjeta);
+            System.out.println("\nSeguro de pagar el vuelo(s/n):");
+            String confirmacion = sc.next();
+            if(confirmacion.equals("s")){
+                System.out.println(vueloa);
+                System.out.println(usuarioa);
+                System.out.println("Has comprado tu vuelo. Tu codigo de reserva es: ");
+            
+            }
+        }
     }
 
     public void menuOperador() {
