@@ -1,5 +1,6 @@
 package Reserva;
 import Usuario.Cliente;
+import Usuario.Usuario;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -7,14 +8,14 @@ public class Reserva {
     //Atributos:
     protected String codigoVueloReserva;
     protected ArrayList<VueloReserva> vuelosReservas = new ArrayList<>();  
-    protected Cliente cliente;
+    protected Usuario usuario;
     protected String fechaReserva;
     protected double valorPagar;    
     
     //Constructor: 
-    public Reserva(String codigoVueloReserva,Cliente cliente, String fechaReserva, double valorPagar){
+    public Reserva(String codigoVueloReserva,Usuario usuario, String fechaReserva, double valorPagar){
         this.codigoVueloReserva = codigoVueloReserva;
-        this.cliente = cliente;
+        this.usuario = usuario;
         this.fechaReserva = fechaReserva;
         this.valorPagar = valorPagar;
     }
@@ -49,12 +50,12 @@ public class Reserva {
         this.vuelosReservas = vuelosReservas;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     public String getFechaReserva() {
