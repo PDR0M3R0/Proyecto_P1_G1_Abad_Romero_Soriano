@@ -6,14 +6,17 @@ import java.util.Scanner;
 
 public class Reserva {
     //Atributos:
+    
+    protected String codigoReserva;
     protected String codigoVueloReserva;
-    protected ArrayList<VueloReserva> vuelosReservas = new ArrayList<>();  
+    protected ArrayList<VueloReserva> vuelosElegidos = new ArrayList<>();  
     protected Usuario usuario;
     protected String fechaReserva;
     protected double valorPagar;    
     
     //Constructor: 
     public Reserva(String codigoVueloReserva,Usuario usuario, String fechaReserva, double valorPagar){
+        this.codigoReserva = generarCodigoAleatorio();
         this.codigoVueloReserva = codigoVueloReserva;
         this.usuario = usuario;
         this.fechaReserva = fechaReserva;
@@ -22,16 +25,31 @@ public class Reserva {
     
     
     //Metodos de la clase:
-    public void AsignacionAsientos(){
+    public Pago Pago(){
+        //Aqui  crear un objeto pago
+        Pago pg = new Pago(this,valorPagar,Estado.PENDIENTE);
+        return pg;
+    }
+
+    public String generarCodigoAleatorio(){
+        int longitud = 3;
+        String cadena = "abcdefgahijkmnolpqrstuvwxyzABCDEFGHIJKMNLOPQRSTUVWXYZ1234567890";
+        String codigoAleatorio = "";
         
+        for(int i=0;i<longitud;i++){
+            int indiceAleatorio = (int)(Math.random()*10);
+            char caracterAleatorio = cadena.charAt(indiceAleatorio);
+            codigoAleatorio += caracterAleatorio;
+        }
+        return codigoAleatorio;
     }
     
-    public void DatosPasajero(){
-        
+    public String getCodigoReserva() {
+        return codigoReserva;
     }
-    
-    public void Pago(){
-        
+
+    public void setCodigoReserva(String codigoReserva) {
+        this.codigoReserva = codigoReserva;
     }
     
     public String getCodigoVueloReserva() {
@@ -42,12 +60,12 @@ public class Reserva {
         this.codigoVueloReserva = codigoVueloReserva;
     }
 
-    public ArrayList<VueloReserva> getVueloReservas() {
-        return vuelosReservas;
+    public ArrayList<VueloReserva> getVuelosElegidos() {
+        return vuelosElegidos;
     }
 
     public void setVuelosReservas(ArrayList<VueloReserva> vuelosReservas) {
-        this.vuelosReservas = vuelosReservas;
+        this.vuelosElegidos = vuelosReservas;
     }
 
     public Usuario getUsuario() {

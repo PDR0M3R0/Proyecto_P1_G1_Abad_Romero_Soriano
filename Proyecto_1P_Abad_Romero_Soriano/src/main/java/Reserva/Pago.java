@@ -1,23 +1,70 @@
 package Reserva;
 import java.util.Scanner;
-import Usuario.Cliente;
-import SistemaCompraTicketsAereos.SistemaCompraTicketsAereos;
+import Usuario.*;
+
 
 public class Pago {
     //Atributos:
+    protected String codigoPago;
     protected Reserva reserva;
-    protected double totalFinal;
-    
-    
-    
+    protected double totalPagar;
+    protected Estado estado;
     
     //Constructores:
-    public Pago(Reserva reserva, double totalFinal){
+    public Pago(Reserva reserva, double totalPagar, Estado estado){
+        this.codigoPago = generarCodigoAleatorio();
         this.reserva = reserva;
-        this.totalFinal = totalFinal;
+        this.totalPagar = totalPagar;
+        this.estado = estado;
     }
+    
+    
 
     //Metodos de la clase
+    public void pagoTarjeta(){
+        
+            
+            
+    }
+
+    public void pagoMillas(){
+        
+        
+        
+        
+    }
+    
+    public String generarCodigoAleatorio(){
+        int longitud = 3;
+        String cadena = "abcdefgahijkmnolpqrstuvwxyzABCDEFGHIJKMNLOPQRSTUVWXYZ1234567890";
+        String codigoAleatorio = "";
+        
+        for(int i=0;i<longitud;i++){
+            int indiceAleatorio = (int)(Math.random()*10);
+            char caracterAleatorio = cadena.charAt(indiceAleatorio);
+            codigoAleatorio += caracterAleatorio;
+        }
+        return codigoAleatorio;
+    }
+    
+    
+    
+    public Estado getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
+    }
+
+    public String getCodigoPago() {
+        return codigoPago;
+    }
+
+    public void setCodigoPago(String codigoPago) {
+        this.codigoPago = codigoPago;
+    }
+    
     public Reserva getReserva() {
         return reserva;
     }
@@ -26,43 +73,12 @@ public class Pago {
         this.reserva = reserva;
     }
 
-    public double getTotalFinal() {
-        return totalFinal;
+    public double getTotalPagar() {
+        return totalPagar;
     }
 
-    public void setTotalFinal(double totalFinal) {
-        this.totalFinal = totalFinal;
+    public void setTotalFinal(double totalPagar) {
+        this.totalPagar = totalPagar;
     }
-    
-    public void metodoPago(){
-        Scanner sc = new Scanner(System.in);
-        int opcion = sc.nextInt();
         
-        if(opcion == 1){
-            //Cliente clientePagar = (Cliente)usuarioa;
-            //String numTarjeta = clientePagar.getTarjeta();
-            //System.out.println(numTarjeta);
-            System.out.println(SistemaCompraTicketsAereos.vueloa);
-            System.out.println(); //se imprime el usuario
-            
-        }else if (opcion == 2){
-            Cliente clientePagar = (Cliente)usuarioa.get(0);
-            String numTarjeta = clientePagar.getTarjeta();
-            System.out.println(numTarjeta);
-            System.out.println("\nSeguro de pagar el vuelo(s/n):");
-            String confirmacion = sc.next();
-            
-            if(confirmacion.equals("s")){
-                System.out.println(vueloa);
-                System.out.println(usuarioa);
-                System.out.println("Has comprado tu vuelo. Tu codigo de reserva es: ");
-            
-            }
-        }
-    }
-    
-    public void consultarPago(){
-        
-    }
-    
 }

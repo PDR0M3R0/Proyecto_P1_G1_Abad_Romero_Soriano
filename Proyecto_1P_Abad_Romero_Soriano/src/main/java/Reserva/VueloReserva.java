@@ -2,48 +2,50 @@ package Reserva;
 
 public class VueloReserva{
     //Atributos:
-    protected Reserva reserva;    //Codigo nuevo de reserva
-    protected Vuelo vueloIda;   //Sera el codigo de la clase vuelo
-    protected Vuelo vueloRetorno;  //vuelo de retorno
+    protected String codigoVueloReserva;       //Codigo nuevo de reserva
+    protected Vuelo vuelo ;          //Sera el codigo de la clase vuelo
     protected TipoVuelo tipoVuelo;
     protected TipoTarifa tipoTarifa;
     
     
     //Constuctor: 
-    public VueloReserva(Reserva reserva,Vuelo vueloIda,Vuelo vueloRetorno,TipoVuelo tipoVuelo,TipoTarifa tipoTarifa){
-        this.reserva = reserva;
-        this.vueloIda = vueloIda;
-        this.vueloRetorno  = vueloRetorno;
+    public VueloReserva(Vuelo vuelo,TipoVuelo tipoVuelo,TipoTarifa tipoTarifa){
+        this.codigoVueloReserva = generarCodigoAleatorio();
+        this.vuelo = vuelo;
         this.tipoTarifa = tipoTarifa;
         this.tipoVuelo = tipoVuelo;
          
     }
     
     //Metodos de la clase: 
-
-    public Reserva getReserva() {
-        return reserva;
+    public String generarCodigoAleatorio(){
+        int longitud = 3;
+        String cadena = "abcdefgahijkmnolpqrstuvwxyzABCDEFGHIJKMNLOPQRSTUVWXYZ1234567890";
+        String codigoAleatorio = "";
+        
+        for(int i=0;i<longitud;i++){
+            int indiceAleatorio = (int)(Math.random()*10);
+            char caracterAleatorio = cadena.charAt(indiceAleatorio);
+            codigoAleatorio += caracterAleatorio;
+        }
+        return codigoAleatorio;
     }
 
-    public void setReserva(Reserva reserva) {
-        this.reserva = reserva;
+    public String getCodigoVueloReserva() {
+        return codigoVueloReserva;
     }
 
-    public Vuelo getVueloIda() {
-        return vueloIda;
+    public void setCodigoVueloReserva(String codigoVueloReserva) {
+        this.codigoVueloReserva = codigoVueloReserva;
     }
 
-    public void setVueloIda(Vuelo vuelo) {
-        this.vueloIda = vuelo;
+    public Vuelo getVuelo() {
+        return vuelo;
     }
 
-    public void setVueloRetorno(Vuelo vuelo){
-        this.vueloRetorno =vuelo;
+    public void setVuelo(Vuelo vuelo) {
+        this.vuelo = vuelo;
     }
-    public Vuelo getVueloRetorno(){
-        return vueloRetorno;
-    }
-    
     
     public TipoVuelo getTipoVuelo() {
         return tipoVuelo;
