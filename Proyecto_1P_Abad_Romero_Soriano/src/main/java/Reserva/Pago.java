@@ -1,6 +1,7 @@
 package Reserva;
 import java.util.Scanner;
 import Usuario.*;
+import SistemaCompraTicketsAereos.ManejoArchivo;
 
 
 public class Pago {
@@ -8,6 +9,7 @@ public class Pago {
     protected String codigoPago;
     protected Reserva reserva;
     protected double totalPagar;
+    protected TipoPago tipoPago;
     protected Estado estado;
     
     //Constructores:
@@ -47,7 +49,16 @@ public class Pago {
         return codigoAleatorio;
     }
     
+    public void registrarPago(){
+        ManejoArchivo mja = new ManejoArchivo();
+        String linea = this.toString();
+        mja.EscribirArchivo("pagos.txt",linea);  
+    }
     
+    @Override
+    public String toString(){
+        return  codigoPago + "," + reserva.codigoReserva + "," + totalPagar ;
+    }
     
     public Estado getEstado() {
         return estado;

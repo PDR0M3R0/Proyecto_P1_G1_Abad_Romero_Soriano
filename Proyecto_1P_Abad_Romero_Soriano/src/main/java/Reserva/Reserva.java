@@ -44,6 +44,10 @@ public class Reserva {
         return codigoAleatorio;
     }
     
+    public void registrarReservas(){
+        String linea = this.toString();
+    }
+    
     public String getCodigoReserva() {
         return codigoReserva;
     }
@@ -92,4 +96,9 @@ public class Reserva {
         this.valorPagar = valorPagar;
     }
     
+    @Override
+    public String toString(){
+     return codigoReserva + "," + vuelosElegidos.get(0).getVuelo().getCodigoVuelo() + "," + usuario.getNombres() + "," + fechaReserva + "," + valorPagar;   
+        
+    }
 }

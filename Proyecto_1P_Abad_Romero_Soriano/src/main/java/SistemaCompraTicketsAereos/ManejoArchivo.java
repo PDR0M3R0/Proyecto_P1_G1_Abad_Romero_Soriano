@@ -58,7 +58,7 @@ public class ManejoArchivo {
             fichero = new FileWriter(nombreArchivo,true);
             bw = new BufferedWriter(fichero);
             bw.write(linea+"\n");
-            System.out.println("ksdsdlsd");
+            System.out.println("se registró pago en pagos.txt");
 
         } catch (Exception e) {
             e.printStackTrace();
