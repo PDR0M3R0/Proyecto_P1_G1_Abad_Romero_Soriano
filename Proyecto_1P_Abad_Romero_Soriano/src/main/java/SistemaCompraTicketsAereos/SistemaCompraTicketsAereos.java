@@ -3,8 +3,10 @@ package SistemaCompraTicketsAereos;
 import Aviones.*;
 import Reserva.*;
 import Usuario.*;
+import java.text.SimpleDateFormat;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class SistemaCompraTicketsAereos {
 
@@ -21,7 +23,9 @@ public class SistemaCompraTicketsAereos {
     static ArrayList<Vuelo> vueloa = new ArrayList<>(); //Aqui se guardan vuelos con el mismo itinerario incluyendo al seleccionado
     
     double[] valores = new double[6]; //Aqui se guardan valores de ida y retorno del Precio y PrecioMillas
-    public static int indiceIda = 0;
+    
+    //Estas variables se sobreescriben para poder indexar en el arraylist de vueloa:
+    public static int indiceIda = 0;  
     public static int indiceRetorno = 0;
 
     
@@ -483,7 +487,13 @@ public class SistemaCompraTicketsAereos {
         Scanner sc = new Scanner(System.in);
         System.out.println("Subtotal: " + subtotal);
         double descuento = 0;
+        int indIDA = indiceIda;
+        int indRETORNO = indiceRetorno;
+        double tarifaIda = valores[2];
+        double tarifaRetorno = valores[5];
         
+        
+//        Aqui imprimí los valores respecticos del vuelo de ida y vuelo Retorno
 //        for(int i =0;i<valores.length;i++){
 //            System.out.println(valores[i]);
 //        }
@@ -491,7 +501,7 @@ public class SistemaCompraTicketsAereos {
         //Variables: 
         //El ususario esta guardado
         //el indices de los vuelos respectivos estan guardarfo
-        //
+        
 
         if (usuarioa.get(0).getPerfil().equals(Perfil.V)) {
 
@@ -513,30 +523,115 @@ public class SistemaCompraTicketsAereos {
                         
                         
                     }
+                    
+                }else {
+                    descuento = 0;
+                
+                
+                System.out.println("Descuento: "+descuento); 
+                double impuesto = 0.12d;
+                double subtotalIVA = (impuesto*subtotal);
+
+                System.out.println("TOTAL: "+subtotal);
+                subtotal += subtotalIVA;
+
+                System.out.println("IVA: "+subtotalIVA);
+                System.out.println("TOTAL A PAGAR: "+subtotal+"\n");
+
+                System.out.println("Formas de pago:");
+                System.out.println("1. Tarjeta de credito");
+                System.out.println("2. Millas\n");
+
+                System.out.println("Estas seguro de pagar el vuelo? (s/n) ");
+                int opcion = sc.nextInt();
+                
+                //Aqui guardamos los vuelos de retorno para cada caso
+                VueloReserva vrIda = null;
+                VueloReserva vrRetor = null;
+                
+                if(opcion == 1){
+                    if(tarifaIda == 0){
+                        //Vuelo Reservas:
+                        VueloReserva vr1 = new VueloReserva(vueloa.get(indIDA),TipoVuelo.IDA,TipoTarifa.E);
+                        VueloReserva vr2 = new VueloReserva(vueloa.get(indRETORNO),TipoVuelo.VUELTA,TipoTarifa.E);
+                        vrIda = vr1;
+                        vrRetor = vr2;
+                         
+                    }else if(tarifaRetorno == 60){
+                        VueloReserva vr1 = new VueloReserva(vueloa.get(indIDA),TipoVuelo.IDA,TipoTarifa.PE);
+                        VueloReserva vr2 = new VueloReserva(vueloa.get(indRETORNO),TipoVuelo.VUELTA,TipoTarifa.PE);
+                        vrIda = vr1;
+                        vrRetor = vr2;
+                        
+                    }else if(tarifaRetorno == 90){
+                        VueloReserva vr1 = new VueloReserva(vueloa.get(indIDA),TipoVuelo.IDA,TipoTarifa.PB);
+                        VueloReserva vr2 = new VueloReserva(vueloa.get(indRETORNO),TipoVuelo.VUELTA,TipoTarifa.PB);
+                        vrIda = vr1;
+                        vrRetor = vr2;
+                        
+                    }
+                    
+                    //Fecha 
+                    Date fechaReserva = new Date();
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+                    String fechaRs = sdf.format(fechaReserva);
+                    
+                    //Para reserva 1
+                    Reserva rs1 = new Reserva(vrIda,usuarioa.get(0),fechaRs,subtotal);
+                    rs1.registrarReservas();
+                    Pago pg1 = rs1.Pago();
+                    pg1.setEstado(Estado.CANCELADO);
+                    pg1.registrarPago();
+
+                    System.out.println("Su pago se ha realizado exitosamente! ");
+                    System.out.println("Has comprado tu vuelo. El codigo de reserva es: "+rs1.getCodigoReserva());
+
+                    //Para reserva 2
+                    Reserva rs2 = new Reserva(vrRetor,usuarioa.get(0),fechaRs,subtotal);
+                    rs2.registrarReservas();
+                    Pago pg2 = rs2.Pago();
+                    pg2.setEstado(Estado.CANCELADO);
+                    pg2.registrarPago();
+
+                    System.out.println("Su pago se ha realizado exitosamente! ");
+                    System.out.println("Has comprado tu vuelo. El codigo de reserva es: "+rs2.getCodigoReserva());
+                    
+                }else if(opcion == 2){
+                    do{
+                    if(usuarioa.get(0).getPerfil().equals(Perfil.V)){
+                        //Fecha 
+                    Date fechaReserva = new Date();
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+                    String fechaRs = sdf.format(fechaReserva);
+                    
+                    //Para reserva 1
+                    Reserva rs1 = new Reserva(vrIda,usuarioa.get(0),fechaRs,vrIda.getVuelo().getPrecioMillas());
+                    rs1.registrarReservas();
+                    Pago pg1 = rs1.Pago();
+                    pg1.setEstado(Estado.CANCELADO);
+                    pg1.registrarPago();
+
+                    System.out.println("Su pago se ha realizado exitosamente! ");
+                    System.out.println("Has comprado tu vuelo. El codigo de reserva es: "+rs1.getCodigoReserva());
+
+                    //Para reserva 2
+                    Reserva rs2 = new Reserva(vrRetor,usuarioa.get(0),fechaRs,vrRetor.getVuelo().getPrecioMillas());
+                    rs2.registrarReservas();
+                    Pago pg2 = rs2.Pago();
+                    pg2.setEstado(Estado.CANCELADO);
+                    pg2.registrarPago();
+
+                    System.out.println("Su pago se ha realizado exitosamente! ");
+                    System.out.println("Has comprado tu vuelo. El codigo de reserva es: "+rs2.getCodigoReserva());
+                    }
+                    System.out.println("Usted no es usuario VIP, no puede canncelar con Millas");
+                    }while(opcion == 3);
                 }
-                }
-        }else {
-            System.out.println("Descuento: "+descuento); 
-            double impuesto = 0.12d;
-            double subtotalIVA = (impuesto*subtotal);
-            
-            System.out.println("TOTAL: "+subtotal);
-            subtotal += subtotalIVA;
-            
-            System.out.println("IVA: "+subtotalIVA);
-            System.out.println("TOTAL A PAGAR: "+subtotal+"\n");
-            
-            //Reserva reserva = new Reserva();
-            System.out.println("Formas de pago:");
-            System.out.println("1. Tarjeta de credito");
-            System.out.println("2. Millas\n");
+                
+            }   
         }
-        
-        
-        
-        System.out.println("Ejlite tu forma de pago: ");
-        
     }
+}
 
     public void menuOperador() {
         System.out.println("\n1. Consultar usuarios");

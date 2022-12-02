@@ -3,21 +3,22 @@ import Usuario.Cliente;
 import Usuario.Usuario;
 import java.util.ArrayList;
 import java.util.Scanner;
+import SistemaCompraTicketsAereos.ManejoArchivo;
 
 public class Reserva {
     //Atributos:
     
     protected String codigoReserva;
-    protected String codigoVueloReserva;
-    protected ArrayList<VueloReserva> vuelosElegidos = new ArrayList<>();  
+    
+    protected VueloReserva vueloReserva;  
     protected Usuario usuario;
     protected String fechaReserva;
     protected double valorPagar;    
     
     //Constructor: 
-    public Reserva(String codigoVueloReserva,Usuario usuario, String fechaReserva, double valorPagar){
+    public Reserva(VueloReserva vueloReserva,Usuario usuario, String fechaReserva, double valorPagar){
         this.codigoReserva = generarCodigoAleatorio();
-        this.codigoVueloReserva = codigoVueloReserva;
+        this.vueloReserva = vueloReserva;
         this.usuario = usuario;
         this.fechaReserva = fechaReserva;
         this.valorPagar = valorPagar;
@@ -46,7 +47,16 @@ public class Reserva {
     
     public void registrarReservas(){
         String linea = this.toString();
+        ManejoArchivo mja = new ManejoArchivo();
+        
+        mja.EscribirArchivo("reservas.txt",linea);
     }
+    
+    
+    
+    
+    
+    
     
     public String getCodigoReserva() {
         return codigoReserva;
@@ -55,23 +65,15 @@ public class Reserva {
     public void setCodigoReserva(String codigoReserva) {
         this.codigoReserva = codigoReserva;
     }
+
+    public VueloReserva getVueloReserva() {
+        return vueloReserva;
+    }
+
+    public void setVueloReserva(VueloReserva vueloReserva) {
+        this.vueloReserva = vueloReserva;
+    }
     
-    public String getCodigoVueloReserva() {
-        return codigoVueloReserva;
-    }
-
-    public void setCodigoVueloReserva(String codigoVueloReserva) {
-        this.codigoVueloReserva = codigoVueloReserva;
-    }
-
-    public ArrayList<VueloReserva> getVuelosElegidos() {
-        return vuelosElegidos;
-    }
-
-    public void setVuelosReservas(ArrayList<VueloReserva> vuelosReservas) {
-        this.vuelosElegidos = vuelosReservas;
-    }
-
     public Usuario getUsuario() {
         return usuario;
     }
@@ -98,7 +100,7 @@ public class Reserva {
     
     @Override
     public String toString(){
-     return codigoReserva + "," + vuelosElegidos.get(0).getVuelo().getCodigoVuelo() + "," + usuario.getNombres() + "," + fechaReserva + "," + valorPagar;   
+     return codigoReserva + "," + vueloReserva + "," + usuario.getNombres() + "," + fechaReserva + "," + valorPagar;   
         
     }
 }
