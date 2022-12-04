@@ -628,9 +628,6 @@ public class SistemaCompraTicketsAereos {
 
         }
                 
-               
-        
-    
         System.out.println("No es vip, no corre");
 }
 

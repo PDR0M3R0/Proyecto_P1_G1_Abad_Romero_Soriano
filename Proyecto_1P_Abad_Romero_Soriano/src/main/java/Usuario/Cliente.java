@@ -19,15 +19,4 @@ public class Cliente extends Usuario {
         this.tarjeta = tarjeta;
     }
     
-    public void pagarReserva(){
-        
-    }
-    public void crearReserva(){
-        
-    }
-    @Override
-    public void consultarReserva(){
-        
-    }
-    
 }

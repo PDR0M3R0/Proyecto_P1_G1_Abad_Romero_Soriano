@@ -94,18 +94,4 @@ public class Usuario {
         this.perfil = perfil;
     }
 
-    public void comprarTicket(){
-      
-        
-        
-        
-    }
-    
-    
-    public void consultarReserva() {
-        
-    }
-    
-    
-
 }

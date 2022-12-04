@@ -9,7 +9,6 @@ public class Pago {
     protected String codigoPago;
     protected Reserva reserva;
     protected double totalPagar;
-    protected TipoPago tipoPago;
     protected Estado estado;
     
     //Constructores:
