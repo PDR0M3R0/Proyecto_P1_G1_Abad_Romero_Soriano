@@ -9,7 +9,6 @@ public class Reserva {
     //Atributos:
     
     protected String codigoReserva;
-    
     protected VueloReserva vueloReserva;  
     protected Usuario usuario;
     protected String fechaReserva;

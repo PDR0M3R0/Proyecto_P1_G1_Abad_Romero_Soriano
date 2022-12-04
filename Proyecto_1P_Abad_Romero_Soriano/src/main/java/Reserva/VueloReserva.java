@@ -3,7 +3,7 @@ package Reserva;
 public class VueloReserva{
     //Atributos:
     protected String codigoVueloReserva;       //Codigo nuevo de reserva
-    protected Vuelo vuelo ;          //Sera el codigo de la clase vuelo
+    protected Vuelo vuelo ;                    //Sera el codigo de la clase vuelo
     protected TipoVuelo tipoVuelo;
     protected TipoTarifa tipoTarifa;
     
