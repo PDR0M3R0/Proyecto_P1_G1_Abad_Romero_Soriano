@@ -63,6 +63,10 @@ public class VueloReserva{
         this.tipoTarifa = tipoTarifa;
     }
     
+    @Override
+    public String toString(){
+        return codigoVueloReserva + "," + vuelo + "," + tipoVuelo +","+tipoTarifa ;
+    }
     
     
     

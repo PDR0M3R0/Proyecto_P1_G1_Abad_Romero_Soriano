@@ -8,13 +8,15 @@ public class Pruebas {
         VueloReserva vr = new VueloReserva(v,TipoVuelo.IDA,TipoTarifa.E);
         Reserva rs = new Reserva(vr,u,"fechareserva",25.0);
         Pago pg = rs.Pago();
-        
-        
-        
-        System.out.println(vr.getCodigoVueloReserva());
-        System.out.println(rs.getCodigoReserva());
-        System.out.println(pg.getCodigoPago());    
+//        
+//        
+//        
+//        System.out.println(vr.getCodigoVueloReserva());
+//        System.out.println(rs.getCodigoReserva());
+//        System.out.println(pg.getCodigoPago());    
           
+        System.out.println(vr);
+        System.out.println(rs);
     
 }
 }

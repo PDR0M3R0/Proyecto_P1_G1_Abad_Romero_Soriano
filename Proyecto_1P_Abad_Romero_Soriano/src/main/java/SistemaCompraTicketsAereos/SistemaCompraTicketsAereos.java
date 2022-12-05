@@ -247,7 +247,7 @@ public class SistemaCompraTicketsAereos {
             this.paso4();
         
         } else if (x == 2) {
-            //invocar e metodo de consultar reser'
+             consultarReservas(usuarioa.get(0));
             
             
         } else if (x == 3){
@@ -583,7 +583,7 @@ public class SistemaCompraTicketsAereos {
             pg1.registrarPago();
 
             System.out.println("Su pago se ha realizado exitosamente! ");
-            System.out.println("Has comprado tu vuelo. El codigo de reserva es: "+rs1.getCodigoReserva());
+            System.out.println("Has comprado tu vuelo. El codigo de reserva es: "+rs1.getCodigoReserva()+"\n");
 
             //Para reserva 2
             Reserva rs2 = new Reserva(vrRetor,usuarioa.get(0),fechaRs,subtotal);
@@ -593,7 +593,7 @@ public class SistemaCompraTicketsAereos {
             pg2.registrarPago();
 
             System.out.println("Su pago se ha realizado exitosamente! ");
-            System.out.println("Has comprado tu vuelo. El codigo de reserva es: "+rs2.getCodigoReserva());
+            System.out.println("Has comprado tu vuelo. El codigo de reserva es: "+rs2.getCodigoReserva()+ "\n");
 
         }else if(formaOpcion == 2){
             
@@ -611,7 +611,7 @@ public class SistemaCompraTicketsAereos {
                 pg1.registrarPago();
 
                 System.out.println("Su pago se ha realizado exitosamente! ");
-                System.out.println("Has comprado tu vuelo. El codigo de reserva es: "+rs1.getCodigoReserva());
+                System.out.println("Has comprado tu vuelo. El codigo de reserva es: "+rs1.getCodigoReserva()+"\n");
 
                 //Para reserva 2
                 Reserva rs2 = new Reserva(vrRetor,usuarioa.get(0),fechaRs,vrRetor.getVuelo().getPrecioMillas());
@@ -621,20 +621,54 @@ public class SistemaCompraTicketsAereos {
                 pg2.registrarPago();
 
                 System.out.println("Su pago se ha realizado exitosamente! ");
-                System.out.println("Has comprado tu vuelo. El codigo de reserva es: "+rs2.getCodigoReserva());
+                System.out.println("Has comprado tu vuelo. El codigo de reserva es: "+rs2.getCodigoReserva()+"\n");
+                }else{
+                    System.out.println("Usted no es usuario VIP, no puede canncelar con Millas");
                 }
-            
-                System.out.println("Usted no es usuario VIP, no puede canncelar con Millas");
-
         }
                 
-        System.out.println("No es vip, no corre");
-}
-
+    }
+    
+//    public void consultarReservas(Usuario u){
+//        System.out.println("Las reservas realizadas por el usuario "+ u.getNombres() + " " + u.getApellidos() + "son: ");
+//        ManejoArchivo mja = new ManejoArchivo();
+//        
+//        ArrayList<String[]> reservasString = mja.LeeFichero("reservas.txt");
+//        for(String[] s:reservasString){
+//            
+//            String codigoReserva = s[0];
+//            VueloReserva vueloReseva = VueloReserva.valueOf(s[1]); //este solo tiene el referencia de memoria de vuelo reserval
+//            
+//            String fechaRs = s[2];
+//            double valorPagar = Double.valueOf(s[3]); 
+//            double precioMillas = Double.valueOf(s[4]); 
+//            
+//            Reserva r = new Reserva(codigoReserva,vueloReserva,fechaRs,valorPagar,precioMillas);
+//            reservas.add(r);
+//        }
+//        
+//        for(Reserva r: reservas){
+//            if(u.equals(r.getUsuario())){
+//                System.out.println(r);
+//            }
+//        }
+//    }
+    
     public void menuOperador() {
         System.out.println("\n1. Consultar usuarios");
         System.out.println("2. Consultar reservas");
         System.out.println("3. Salir");
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Ingrese su opcion: ");
+
+        int x = sc.nextInt();
+        if (x == 1) {
+            this.consultarUsuarios();
+
+        }
+    }
+
+    public void consultarUsuarios() {
 
     }
 }
