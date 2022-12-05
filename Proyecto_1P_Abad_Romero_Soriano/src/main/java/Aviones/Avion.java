@@ -17,6 +17,9 @@ public class Avion {
     }
     
     //Metodos de clase:--------------------------------------------------------
+    /**
+     * Este meotod tiene la capacidad de poder agregar asientos dentro de la lista que tiene de atributo un avion
+     */
     public void agrearAsiento(){
         Scanner sc = new Scanner(System.in);
         String continuar = "null";
@@ -44,6 +47,9 @@ public class Avion {
         System.out.println("Adios, tenga un buen día!");
     }
     
+    /**
+     * Este metodo permite visualizar al que asientos esa yaocupados
+     */
     public void consultarAsientosOcupados(){
         System.out.println("Los siguientes asientos se encuentran ocupados: ");
         for(Asiento p: asientos){
@@ -51,6 +57,10 @@ public class Avion {
         } 
     }
     
+    /**
+     * Este metodo permite generar un aciento sin que ya se encuente en un avion 
+     * @return un objetod de la clase asiento
+     */
     public Asiento generarAsiento(){
         double ale = (int)(Math.random()*100); //poner resecto capacidad
         int asientoAle = (int)ale;
