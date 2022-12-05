@@ -1,5 +1,0 @@
-codigoAvion,capacidad
-Airbus A319,61
-Airbus A356,35
-Airbus A220,70
-Airbus A320,60
