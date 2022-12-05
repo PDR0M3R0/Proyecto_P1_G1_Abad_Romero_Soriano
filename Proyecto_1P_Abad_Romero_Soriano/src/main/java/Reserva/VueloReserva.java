@@ -1,5 +1,7 @@
 package Reserva;
 
+import SistemaCompraTicketsAereos.ManejoArchivo;
+
 public class VueloReserva{
     //Atributos:
     protected String codigoVueloReserva;       //Codigo nuevo de reserva
@@ -31,6 +33,14 @@ public class VueloReserva{
         return codigoAleatorio;
     }
 
+    public void registrarVueloReserva(){
+        String linea = this.toString();
+        ManejoArchivo mja = new ManejoArchivo();
+        
+        mja.EscribirArchivo("vueloReservas.txt",linea);
+    }
+    
+    
     public String getCodigoVueloReserva() {
         return codigoVueloReserva;
     }

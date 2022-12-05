@@ -577,6 +577,11 @@ public class SistemaCompraTicketsAereos {
 
             //Para reserva 1
             Reserva rs1 = new Reserva(vrIda,usuarioa.get(0),fechaRs,subtotal);
+            
+            //Registro de los vuelo reserva en el archivo de texto
+            vrIda.registrarVueloReserva();
+            vrRetor.registrarVueloReserva();
+            
             rs1.registrarReservas();
             Pago pg1 = rs1.Pago();
             pg1.setEstado(Estado.CANCELADO);
@@ -602,6 +607,10 @@ public class SistemaCompraTicketsAereos {
                 Date fechaReserva = new Date();
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
                 String fechaRs = sdf.format(fechaReserva);
+                
+                //Registro de los vuelo reserva en el archivo de texto
+                vrIda.registrarVueloReserva();
+                vrRetor.registrarVueloReserva();
 
                 //Para reserva 1
                 Reserva rs1 = new Reserva(vrIda,usuarioa.get(0),fechaRs,vrIda.getVuelo().getPrecioMillas());
@@ -629,30 +638,32 @@ public class SistemaCompraTicketsAereos {
                 
     }
     
-//    public void consultarReservas(Usuario u){
-//        System.out.println("Las reservas realizadas por el usuario "+ u.getNombres() + " " + u.getApellidos() + "son: ");
-//        ManejoArchivo mja = new ManejoArchivo();
-//        
-//        ArrayList<String[]> reservasString = mja.LeeFichero("reservas.txt");
-//        for(String[] s:reservasString){
-//            
-//            String codigoReserva = s[0];
-//            VueloReserva vueloReseva = VueloReserva.valueOf(s[1]); //este solo tiene el referencia de memoria de vuelo reserval
-//            
-//            String fechaRs = s[2];
-//            double valorPagar = Double.valueOf(s[3]); 
-//            double precioMillas = Double.valueOf(s[4]); 
-//            
-//            Reserva r = new Reserva(codigoReserva,vueloReserva,fechaRs,valorPagar,precioMillas);
-//            reservas.add(r);
-//        }
-//        
-//        for(Reserva r: reservas){
-//            if(u.equals(r.getUsuario())){
-//                System.out.println(r);
-//            }
-//        }
-//    }
+    public void consultarReservas(Usuario u){
+        System.out.println("Las reservas realizadas por el usuario "+ u.getNombres() + " " + u.getApellidos() + "son: ");
+        ManejoArchivo mja = new ManejoArchivo();
+        
+        ArrayList<String[]> vuelosReservasString = mja.LeeFichero("vuelosReservas.txt");
+        
+        for(vueloReserva vr:vuelosReservasString ){
+            
+        for(String[] s:vuelosReservasString){
+            String codigoReserva = s[0];
+            
+            
+            String fechaRs = s[2];
+            double valorPagar = Double.valueOf(s[3]); 
+            double precioMillas = Double.valueOf(s[4]); 
+            
+            Reserva r = new Reserva(codigoReserva,vueloReserva,fechaRs,valorPagar,precioMillas);
+            reservas.add(r);
+        }
+        }
+        for(Reserva r: reservas){
+            if(u.equals(r.getUsuario())){
+                System.out.println(r);
+            }
+        }
+    }
     
     public void menuOperador() {
         System.out.println("\n1. Consultar usuarios");
@@ -670,5 +681,25 @@ public class SistemaCompraTicketsAereos {
 
     public void consultarUsuarios() {
 
+        for (Usuario u : usuarios) {
+
+            if (u.getPerfil().equals(Perfil.S)) {
+                System.out.println(u.getNombres() + " " + u.getApellidos() + ", CLIENTE ESTANDAR, " + u.getCedula());
+            }
+            if (u.getPerfil().equals(Perfil.V)) {
+                System.out.println(u.getNombres() + " " + u.getApellidos() + ", CLIENTE VIP, " + u.getCedula());
+            }
+            if (u.getPerfil().equals(Perfil.O)) {
+                for (Operador o : operadores) {
+                    if (u.getCedula().equals(o.getCedula())) {
+                        System.out.println(u.getNombres() + " " + u.getApellidos() + ", OPERADOR, " + o.getSueldo());
+                    }
+                }
+            }
+
+        }
     }
+
+
+    
 }
