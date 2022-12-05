@@ -577,6 +577,7 @@ public class SistemaCompraTicketsAereos {
 
             //Para reserva 1
             Reserva rs1 = new Reserva(vrIda,usuarioa.get(0),fechaRs,subtotal);
+            reservas.add(rs1);
             
             //Registro de los vuelo reserva en el archivo de texto
             vrIda.registrarVueloReserva();
@@ -592,6 +593,8 @@ public class SistemaCompraTicketsAereos {
 
             //Para reserva 2
             Reserva rs2 = new Reserva(vrRetor,usuarioa.get(0),fechaRs,subtotal);
+            reservas.add(rs2);
+            
             rs2.registrarReservas();
             Pago pg2 = rs2.Pago();
             pg2.setEstado(Estado.CANCELADO);
@@ -614,6 +617,8 @@ public class SistemaCompraTicketsAereos {
 
                 //Para reserva 1
                 Reserva rs1 = new Reserva(vrIda,usuarioa.get(0),fechaRs,vrIda.getVuelo().getPrecioMillas());
+                reservas.add(rs1);
+                
                 rs1.registrarReservas();
                 Pago pg1 = rs1.Pago();
                 pg1.setEstado(Estado.CANCELADO);
@@ -624,6 +629,7 @@ public class SistemaCompraTicketsAereos {
 
                 //Para reserva 2
                 Reserva rs2 = new Reserva(vrRetor,usuarioa.get(0),fechaRs,vrRetor.getVuelo().getPrecioMillas());
+                reservas.add(rs2);
                 rs2.registrarReservas();
                 Pago pg2 = rs2.Pago();
                 pg2.setEstado(Estado.CANCELADO);
@@ -640,27 +646,9 @@ public class SistemaCompraTicketsAereos {
     
     public void consultarReservas(Usuario u){
         System.out.println("Las reservas realizadas por el usuario "+ u.getNombres() + " " + u.getApellidos() + "son: ");
-        ManejoArchivo mja = new ManejoArchivo();
-        
-        ArrayList<String[]> vuelosReservasString = mja.LeeFichero("vuelosReservas.txt");
-        
-        for(vueloReserva vr:vuelosReservasString ){
-            
-        for(String[] s:vuelosReservasString){
-            String codigoReserva = s[0];
-            
-            
-            String fechaRs = s[2];
-            double valorPagar = Double.valueOf(s[3]); 
-            double precioMillas = Double.valueOf(s[4]); 
-            
-            Reserva r = new Reserva(codigoReserva,vueloReserva,fechaRs,valorPagar,precioMillas);
-            reservas.add(r);
-        }
-        }
-        for(Reserva r: reservas){
-            if(u.equals(r.getUsuario())){
-                System.out.println(r);
+        for(Reserva rs: reservas){
+            if(usuarioa.get(0).equals(rs.getUsuario())){
+                System.out.println(rs);
             }
         }
     }

@@ -77,12 +77,5 @@ public class VueloReserva{
     public String toString(){
         return codigoVueloReserva + "," + vuelo + "," + tipoVuelo +","+tipoTarifa ;
     }
-    
-    
-    
-    
-    
-    
-    
-            
+        
 }

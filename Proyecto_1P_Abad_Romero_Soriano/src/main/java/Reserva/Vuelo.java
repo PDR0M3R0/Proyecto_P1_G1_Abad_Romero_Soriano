@@ -82,7 +82,7 @@ public class Vuelo {
     
     @Override
     public String toString(){
-        return codigoVuelo+" ,"+codAvion+" ,"+fechaSalida+" ,"+fechaLlegada+" ,"+codItine+" ,"+precio+" ,"+precioMillas;
+        return codigoVuelo+","+codAvion+","+fechaSalida+","+fechaLlegada+","+codItine+","+precio+","+precioMillas;
     }
     
     
