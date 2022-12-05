@@ -25,12 +25,22 @@ public class Reserva {
     
     
     //Metodos de la clase:
+    
+    /**
+     * public void registrarPago(): registra el pago y lo escribe en un archivo txt
+     * @return regresa un objeto de la clase Pago el cual le pertenece respectivamente a la reserva que ha sido registrada y comprada por el usuario independeientme t
+     * de la forma de pago elegida
+     */
     public Pago Pago(){
         //Aqui  crear un objeto pago
         Pago pg = new Pago(this,valorPagar,Estado.PENDIENTE);
         return pg;
     }
 
+    /**
+     * Este es un metodo que genera un codigo de string aleatorio y permite inicializar la variable de codigo Reserva
+     * @return un string 
+     */
     public String generarCodigoAleatorio(){
         int longitud = 3;
         String cadena = "abcdefgahijkmnolpqrstuvwxyzABCDEFGHIJKMNLOPQRSTUVWXYZ1234567890";
@@ -44,6 +54,9 @@ public class Reserva {
         return codigoAleatorio;
     }
     
+    /**
+     * Este metodo permite registrar las reservvas tal como se muetra en el metodo to string en el archivo de texto que se encuentr en el proyecto
+     */
     public void registrarReservas(){
         String linea = this.toString();
         ManejoArchivo mja = new ManejoArchivo();

@@ -20,6 +20,11 @@ public class VueloReserva{
     }
     
     //Metodos de la clase: 
+    
+    /**
+     * public String generarCodigoAleatorio(): genera un codigo aleatorio para poder iniciarlizar el codigo de vuelo reserva
+     * @return 
+     */
     public String generarCodigoAleatorio(){
         int longitud = 3;
         String cadena = "abcdefgahijkmnolpqrstuvwxyzABCDEFGHIJKMNLOPQRSTUVWXYZ1234567890";
@@ -33,6 +38,9 @@ public class VueloReserva{
         return codigoAleatorio;
     }
 
+    /**
+     * Este metodo permite regisrar el vuelo reserva en un archivo de texto que se encuentra en la carptea del mismo proyecto
+     */
     public void registrarVueloReserva(){
         String linea = this.toString();
         ManejoArchivo mja = new ManejoArchivo();

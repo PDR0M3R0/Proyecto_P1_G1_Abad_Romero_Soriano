@@ -5,6 +5,11 @@ import java.util.ArrayList;
 
 
 public class ManejoArchivo {
+    /**
+     * Este metodo permite poder acceder a los archivos de text para poder meter cada linea del texto seprada respectivamente por cada coma mediante un split, en un arregleo de string para posteriormente ser recorrida en un metodo de cargar de archivos y poder rellenar las listas estaticas de un objeto de la clase sistema
+     * @param nombrearchivo recibe el nombre del archivo tde texto a leer para facilidad de la ruta este archiv se colocaron dentro de la carpeta dell mismo proyecto
+     * @return una lista de arreglos de string
+     */
     public static ArrayList<String[]> LeeFichero(String nombrearchivo) {
         ArrayList<String[]> lineas = new ArrayList<>();
         File archivo = null;
@@ -48,7 +53,11 @@ public class ManejoArchivo {
         return lineas;
 
     }
-
+    /**
+     * Este metod permite poder escribir infirmpacion dentro de un archivo de texto, el cual estara ubicacdo en la misma carpeta del proyecto para no usar alguna ruta. resi
+     * @param nombreArchivo recite el nombre de l archivo a leer
+     * @param linea corresponde al forma que estara estructura la informacion al escribir en el archivo de text, en estos casos usaemos toString para su uso respectivamente separado con comas
+     */
     public static void EscribirArchivo(String nombreArchivo, String linea) {
 
         FileWriter fichero = null;

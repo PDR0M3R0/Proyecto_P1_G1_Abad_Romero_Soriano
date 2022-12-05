@@ -48,7 +48,9 @@ public class SistemaCompraTicketsAereos {
        
         
     }
-
+/**
+ * Este metodo permite hacer armar objetos con los datos de los archivs de texto, este tiene la especialidad de cargar objetode de la calse usuarios
+ */
     public void cargaUsuarios() {
 
         ArrayList<String[]> parametros = ManejoArchivo.LeeFichero("usuarios.txt");
@@ -75,6 +77,10 @@ public class SistemaCompraTicketsAereos {
         }
 
     }
+    
+    /**
+     * Este metodo tiene la misma fnucionalidad que el metodo anterior solo que esta estructurado para poder cargar la lista estatica de cleintes y crear los respectivos objetods de la clase clientes
+     */
 
     public void cargarClientes() {
         ArrayList<String[]> parametros = ManejoArchivo.LeeFichero("clientes.txt");
@@ -108,7 +114,9 @@ public class SistemaCompraTicketsAereos {
             }
         }
     }
-
+/**
+ * Este metodo tiene la especalidad de poder estrcturar la informacion recibidad de el archivo de texto y cargar los objetos de operador en la lista estatica respectiva
+ */
     public void cargarOPeradores() {
         ArrayList<String[]> parametros = ManejoArchivo.LeeFichero("operadores.txt");
         for (String[] s : parametros) {
@@ -124,6 +132,9 @@ public class SistemaCompraTicketsAereos {
         }
     }
 
+    /**
+     * Este metodo permite la cargar de lso objetos dentro de la lits a estatica de itinerarios desde un archovo de texto 
+     */
     public void cargarItinerarios() {
         ArrayList<String[]> parametros = ManejoArchivo.LeeFichero("itinerarios.txt");
         for (String[] s : parametros) {
@@ -140,7 +151,9 @@ public class SistemaCompraTicketsAereos {
         }
 
     }
-
+/**
+ * Este metod permite la carga de objetos desde el archvio de texto 
+ */
     public void cargarAviones() {
         ArrayList<String[]> parametros = ManejoArchivo.LeeFichero("aviones.txt");
         for (String[] s : parametros) {
@@ -152,6 +165,9 @@ public class SistemaCompraTicketsAereos {
         }
     }
 
+    /**
+ * Este metod permite la carga de objetos desde el archvio de texto 
+ */
     public void cargarAsientos() {
         ArrayList<String[]> parametros = ManejoArchivo.LeeFichero("asientos.txt");
         for (String[] s : parametros) {
@@ -171,6 +187,9 @@ public class SistemaCompraTicketsAereos {
         }
     }
 
+    /**
+ * Este metod permite la carga de objetos desde el archvio de texto 
+ */
     public void cargarVuelos() {
         ArrayList<String[]> parametros = ManejoArchivo.LeeFichero("vuelos.txt");
         for (String[] s : parametros) {
@@ -195,6 +214,12 @@ public class SistemaCompraTicketsAereos {
 
         }
     }
+    
+    /**
+     * public void ingreso(): Este metodo es el que valida que el usuario y contraseña sean correctos, 
+     * dependiendo del usuario si este es operador u cliente lo mandara al menu correspondiente
+     * 
+     */
 
     public void ingreso() {
         
@@ -225,6 +250,12 @@ public class SistemaCompraTicketsAereos {
             }
         }
     }
+    
+    /**
+     * public void menuCliente(): es el menu para el cliente, 
+     * en este se puede escoger la opcion comprar tickets, 
+     * consultar reservas y salir
+     */
 
     public void menuCliente() {
         
@@ -263,6 +294,11 @@ public class SistemaCompraTicketsAereos {
         }
     }
 
+    /**
+     * public void paso1(): El paso 1 es donde el usuario elige el origen y destino de su vuelo junto con la fecha de salida y llegada, 
+     * donde luego se le mostraran los vuelos de acuerdo a las elecciones previas y el usuario seleccionara los que le convenga y su tarifa
+     */
+    
     public void paso1() {
 
         String[] lugares = {"QUITO", "GUAYAQUIL", "LIMA", "BUENOS AIRES", "SANTIAGO", "BOGOTÁ", "BRASILIA", "ASUNCIÓN", "MONTEVIDEO"};
@@ -397,17 +433,16 @@ public class SistemaCompraTicketsAereos {
         }
     }
     
+    /**
+     * public void paso2(): Este metodo permite mostrar al usuario el codigo de avion
+     * Al mismo tiempo el asiento correspondiente el cual por metodos es unico dentro del avion
+     * 
+     */
+    
     public void paso2(){
         System.out.println("*******************Paso2*********************");
         System.out.println("*********************************************\n");
-        
-//        for (Vuelo v : vueloa) {
-//            System.out.println(v);
-//        }
-//
-//        for (Usuario u : usuarioa) {
-//            System.out.println(u);
-//        }
+       
 
         String vIda = vueloa.get(indiceIda).getCodAvion();  //codigo de vuelo de Ida
         
@@ -440,7 +475,9 @@ public class SistemaCompraTicketsAereos {
         
     }
     
-        
+    /**
+     * public void paso3(): pide datos extra al usuario para completar mas informacion
+     */    
 
     public void paso3() {
         
@@ -476,7 +513,13 @@ public class SistemaCompraTicketsAereos {
         //Aqui no se guarda nada porque solo se instancia desde el arreglo de usuarios y ya esta en usuarioa
     }
 
-    
+    /**
+     * public void paso4(): Este metodo permite al usuario ver factura y las diferentes formas de pago al igual que sus
+     * restricciones estan basadas en el perfil usuario
+     * Repecto a este metodo permite registrar las reservas en una lista estaitca al giaul que anotarlas en un archivo de texto
+     * Al igual que generar un objeto de la clase pago y poder registrarlo en un archi de texto respectivamente en la carpeta del proyecto
+     * 
+     */
     
     public void paso4() {
         System.out.println("*******************Paso4*********************");
@@ -643,7 +686,12 @@ public class SistemaCompraTicketsAereos {
         }
                 
     }
-    
+     /**
+      * 
+      * public void consultarReserva(Usuario u): Este metodo permite mostarr al usaurio las reservas hechas hasta el momento 
+      * Necesita de uns instacia del mismo usuario
+      * @param u Es el usuario quien esta accediendo al metodo de consultar recargar
+      */
     public void consultarReservas(Usuario u){
         System.out.println("Las reservas realizadas por el usuario "+ u.getNombres() + " " + u.getApellidos() + "son: ");
         for(Reserva rs: reservas){
@@ -653,6 +701,10 @@ public class SistemaCompraTicketsAereos {
         }
     }
     
+    /**
+     * Este metodo tiene la funcionalidad de mostraar en pantalla las opciones que tien eun operador 
+     * 
+     */
     public void menuOperador() {
         System.out.println("\n1. Consultar usuarios");
         System.out.println("2. Consultar reservas");
@@ -667,6 +719,9 @@ public class SistemaCompraTicketsAereos {
         }
     }
 
+    /**
+     * Este metodo tiene la capacida de mostrar los diferentes usuarios cargados hasta el momento
+     */
     public void consultarUsuarios() {
 
         for (Usuario u : usuarios) {

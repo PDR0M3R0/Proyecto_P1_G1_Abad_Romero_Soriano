@@ -19,22 +19,10 @@ public class Pago {
         this.estado = estado;
     }
     
-    
-
-    //Metodos de la clase
-    public void pagoTarjeta(){
-        
-            
-            
-    }
-
-    public void pagoMillas(){
-        
-        
-        
-        
-    }
-    
+    /**
+     * Genera un codigo random para poder iniciarlizar el codigo Pago
+     * @return String para poder inicializar en codigo Pago
+     */
     public String generarCodigoAleatorio(){
         int longitud = 3;
         String cadena = "abcdefgahijkmnolpqrstuvwxyzABCDEFGHIJKMNLOPQRSTUVWXYZ1234567890";
@@ -48,6 +36,9 @@ public class Pago {
         return codigoAleatorio;
     }
     
+    /**
+     * Este metodo permite registrar el objeto pago con una estrcuto toString en el
+     */
     public void registrarPago(){
         ManejoArchivo mja = new ManejoArchivo();
         String linea = this.toString();
